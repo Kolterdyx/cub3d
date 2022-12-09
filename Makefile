@@ -6,7 +6,14 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC_PATH = src
-SRC_FILES = main.c hooks.c maths/vector_functions_1.c maths/vector_functions_2.c maths/vector_functions_3.c maths/lines.c
+SRC_FILES = main.c \
+			hooks.c \
+			maths/vector_functions_1.c \
+			maths/vector_functions_2.c \
+			maths/vector_functions_3.c \
+			maths/lines.c \
+			parser/parser.c
+
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 
 OBJ_PATH = obj
