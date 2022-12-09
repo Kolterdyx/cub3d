@@ -40,7 +40,7 @@ typedef struct s_edge
  * @param img The image to draw to.
  * @param edges Double linked list of edges to intersect.
  * @param player_pos The player's position.
- * @param player_edges The player's edges that will be used for ray casting.
+ * @param rays Double linked list of vectors that will be used for ray casting.
  *
  */
 typedef struct t_data
@@ -50,7 +50,7 @@ typedef struct t_data
 	t_list		*edges;
 
 	t_vector	player_pos;
-	t_list		*player_edges;
+	t_list		*rays;
 }				t_data;
 
 void			key_hook(mlx_key_data_t keydata, void *param);
