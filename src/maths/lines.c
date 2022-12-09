@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lines.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/09 04:32:59 by cigarcia          #+#    #+#             */
+/*   Updated: 2022/12/09 04:34:05 by cigarcia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -18,7 +29,7 @@ int	edges_intersect(t_edge a, t_edge b, t_vector *intersection)
 	if (t >= 0 && t <= 1 && u >= 0 && u <= 1)
 	{
 		*intersection = (t_vector){a.start.x + t * (a.end.x - a.start.x),
-									a.start.y + t * (a.end.y - a.start.y)};
+			a.start.y + t * (a.end.y - a.start.y)};
 		return (1);
 	}
 	return (0);
