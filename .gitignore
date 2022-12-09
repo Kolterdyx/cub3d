@@ -1,2 +1,5 @@
 .idea
 obj
+**/*.o
+**/*.a
+cub3D
