@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:59:40 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 00:38:15 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 00:58:18 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,23 @@ void	cast_and_draw_ray(t_data *data, t_edge ray_edge)
 {
 	t_list		*edge_node;
 	t_edge		edge;
-	t_vector	c_inter;
 	t_vector	inter;
 	int			dir;
 
-	c_inter = (t_vector){0, 0};
 	edge_node = data->edges;
 	while (edge_node)
 	{
 		edge = *(t_edge *)edge_node->content;
 		if (edges_intersect(ray_edge, edge, &inter)
-			&& (is_vector_empty(c_inter)
-				|| vector_distance(inter, data->player_pos)
-				< vector_distance(c_inter, data->player_pos)))
+			&& (vector_distance(inter, data->player_pos)
+				< vector_distance(ray_edge.end, data->player_pos)))
 		{
-			c_inter = inter;
+			ray_edge.end = inter;
 			dir = edge.dir;
 		}
 		edge_node = edge_node->next;
 	}
-	ray_edge.end = c_inter;
-	if (is_vector_empty(c_inter))
-		return ;
-	render_ray(data, dir, c_inter);
+	render_ray(data, dir, ray_edge.end);
 	draw_line(data->minimap, ray_edge, 0x0000FFFF);
 }
 

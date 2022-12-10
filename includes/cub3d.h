@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 00:21:23 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 00:39:03 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@
 # define RAYS 60
 # define RAY_LENGTH 20
 
-# define MINIMAP_WIDTH 300
-# define MINIMAP_HEIGHT 300
-# define MINIMAP_SCALE 20
+# define MINIMAP_WIDTH 600
+# define MINIMAP_HEIGHT 600
+# define MINIMAP_SCALE 40
 
 # define PLAYER_SPEED 1
 # define PLAYER_ROTATION_SPEED 0.1
