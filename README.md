@@ -59,3 +59,17 @@ A row of tiles after culling
 ## Rendering
 
 [Raycast Visibility Algorithm](https://lodev.org/cgtutor/raycasting.html#RayCastingVisibilityAlgorithm)
+
+# Building
+
+This project is compatible with Linux and MacOS. To build the project, on 
+Linux, you will need to install the required [MLX42 dependencies]
+(https://github.com/codam-coding-college/MLX42#for-linux).
+
+On MacOS, you should only need to install `glfw` or `glfw3` using `brew`.
+
+```bash
+brew install glfw
+```
+
+To build the project, run `make` in the root directory of the project.
