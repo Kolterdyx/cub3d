@@ -3,7 +3,7 @@ NAME = cub3D
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 SRC_PATH = src
 SRC_FILES = main.c \
@@ -11,8 +11,11 @@ SRC_FILES = main.c \
 			maths/vector_functions_1.c \
 			maths/vector_functions_2.c \
 			maths/vector_functions_3.c \
-			maths/lines.c \
-			parser/parser.c
+			maths/edges.c \
+			parser/parser.c \
+			setup.c \
+			render/render.c \
+			render/texture_utils.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 

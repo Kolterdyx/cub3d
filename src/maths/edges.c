@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:59 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/09 04:34:05 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/10 14:03:06 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,14 @@ t_vector	find_intersection(t_edge a, t_edge b)
 	if (edges_intersect(a, b, &intersection))
 		return (intersection);
 	return ((t_vector){0, 0});
+}
+
+t_edge	*edge_alloc(t_vector start, t_vector end)
+{
+	t_edge	*new;
+
+	new = ft_calloc(1, sizeof(t_edge));
+	new->start = start;
+	new->end = end;
+	return (new);
 }
