@@ -30,7 +30,7 @@ double	vector_angle(t_vector a)
 
 double	vector_length(t_vector a)
 {
-	return (sqrt(dot_product(a, a)));
+	return (sqrt(vector_dot(a, a)));
 }
 
 double	vector_distance(t_vector a, t_vector b)

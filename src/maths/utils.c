@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bit_stuff.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/10 18:01:37 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 19:50:54 by cigarcia         ###   ########.fr       */
+/*   Created: 2022/12/10 18:43:16 by cigarcia          #+#    #+#             */
+/*   Updated: 2022/12/10 19:59:26 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-uint32_t	revert_bits(uint32_t set, int count)
+double	map_range(double value, t_vector old_range, t_vector new_range)
 {
-	uint32_t	reverted;
-	int			i;
+	return (new_range.x + (value - old_range.x) * (new_range.y - new_range.x)
+		/ (old_range.y - old_range.x));
+}
 
-	i = 0;
-	reverted = 0;
-	while (i < count)
+void	mlx_fill_image(mlx_image_t *img, uint32_t color)
+{
+	uint32_t	x;
+	uint32_t	y;
+
+	y = 0;
+	while (y < img->height)
 	{
-		reverted |= (set & 1) << (count - i - 1);
-		set >>= 1;
-		i++;
+		x = 0;
+		while (x < img->width)
+			put_pixel(img, x++, y, color);
+		y++;
 	}
-	return (reverted);
 }

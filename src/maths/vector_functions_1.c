@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-double	dot_product(t_vector a, t_vector b)
+double	vector_dot(t_vector a, t_vector b)
 {
 	return (a.x * b.x + a.y * b.y);
 }
@@ -34,5 +34,5 @@ t_vector	vector_scale(t_vector a, double b)
 
 t_vector	vector_normalize(t_vector a)
 {
-	return (vector_scale(a, 1. / sqrt(dot_product(a, a))));
+	return (vector_scale(a, 1. / sqrt(vector_dot(a, a))));
 }

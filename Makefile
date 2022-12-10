@@ -3,7 +3,7 @@ NAME = cub3D
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -MD
 
 SRC_PATH = src
 SRC_FILES = main.c \
@@ -13,16 +13,24 @@ SRC_FILES = main.c \
 			maths/vector_functions_3.c \
 			maths/edges.c \
 			maths/bit_stuff.c \
+			maths/utils.c \
 			parser/parser.c \
 			setup.c \
 			render/render.c \
-			render/texture_utils.c
+			render/minimap/minimap.c \
+			render/lines.c \
+			render/rays.c \
+			render/texture_utils.c \
+			level.c \
+			collisions.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 
 OBJ_PATH = obj
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_FILES))
+
+-include $(OBJ:.o=.d)
 
 LIB_PATH = libs
 INCLUDES = -I./includes -I./$(LIB_PATH)/libft -I./$(LIB_PATH)/MLX42/include/MLX42
