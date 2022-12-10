@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:55:23 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 15:06:10 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/10 19:50:54 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_player(t_data *data, t_vector pos, double angle)
 		a = (i * (FOV / RAYS)) - (FOV / 2);
 		radians = angle + (a * M_PI / 180);
 		ft_lstadd_back(&data->rays,
-						ft_lstnew(vector_copy(vector_from_angle(radians))));
+			ft_lstnew(vector_copy(vector_from_angle(radians))));
 		i++;
 	}
 }
