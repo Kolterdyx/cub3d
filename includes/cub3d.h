@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 17:31:58 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/10 17:32:09 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,5 +254,9 @@ mlx_image_t			*scale_image(mlx_t *mlx, mlx_image_t *img, t_vector scale);
  * -1 if the pixel is out of bounds.
  */
 uint32_t			mlx_get_pixel(mlx_image_t *image, int x, int y);
+
+void	draw_texture_area_scaled(mlx_t *mlx, mlx_image_t *img, mlx_texture_t *texture, t_vector *area);
+
+uint32_t revert_bits(uint32_t set, int count);
 
 #endif //CUB3D_H
