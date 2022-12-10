@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 19:40:26 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/10 23:22:42 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,19 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WIDTH 640
-# define HEIGHT 640
+# define WIDTH 1920
+# define HEIGHT 1080
+
 # define FOV 60.0
 # define RAYS 600
+
+# define MINIMAP_WIDTH 600
+# define MINIMAP_HEIGHT 600
+# define MINIMAP_SCALE 30
+
+# define PLAYER_SPEED 1
+# define PLAYER_ROTATION_SPEED 5
+# define PLAYER_HITBOX_RADIUS 10
 
 /**
  * @brief 2D vector
@@ -69,6 +78,9 @@ typedef struct t_data
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 
+	mlx_image_t		*minimap;
+	t_vector		minimap_offset;
+
 	uint32_t		floor_color;
 	uint32_t		ceiling_color;
 	t_list			*edges;
@@ -91,7 +103,7 @@ void				key_hook(mlx_key_data_t keydata, void *param);
  * @param b
  * @return Dot product of a and b
  */
-double				dot_product(t_vector a, t_vector b);
+double				vector_dot(t_vector a, t_vector b);
 
 /**
  * @brief Calculate the difference of two vectors.
@@ -178,6 +190,18 @@ int					is_vector_empty(t_vector a);
 int					edges_intersect(t_edge a, t_edge b, t_vector *intersection);
 
 /**
+ * @brief Check if there is an intersection between an edge and a circle
+ * @param a The edge
+ * @param center The center of the circle
+ * @param radius The radius of the circle
+ * @param closest_point The closest point on the edge to the center
+ * of the circle
+ * @return Whether the edge intersects the circle
+ */
+int					edge_intersects_circle(t_edge a, t_vector center,
+						double radius, t_vector *closest_point);
+
+/**
  * @brief Calculate the intersection of two edges.
  * @param a
  * @param b
@@ -201,7 +225,7 @@ t_vector			*vector_alloc(double x, double y);
  * @param y
  * @return Pointer to the new edge.
  */
-t_edge				*edge_alloc(t_vector start, t_vector end);
+t_edge				*edge_alloc(t_vector start, t_vector end, int dir);
 
 /**
  * @brief Create a copy of a vector. Can be used to create a copy on the heap
@@ -236,7 +260,8 @@ mlx_image_t			*cropped_texture(mlx_t *mlx, mlx_texture_t *texture,
 						t_vector origin, t_vector size);
 
 /**
- * @brief Scales the given image by the given scale factor (x and y are independent).
+ * @brief Scales the given image by the given scale factor
+ * (x and y are independent).
  * Calculates the pixel value based on the NEAREST pixel
  * @param mlx MLX instance.
  * @param img MLX image to scale.
@@ -246,7 +271,8 @@ mlx_image_t			*cropped_texture(mlx_t *mlx, mlx_texture_t *texture,
 mlx_image_t			*scale_image(mlx_t *mlx, mlx_image_t *img, t_vector scale);
 
 /**
- * @brief Gets the color value of a given pixel from the given image (RGBA 32 bit).
+ * @brief Gets the color value of a given pixel from the given image
+ * (RGBA 32 bit).
  * @param image MLX image to get the pixel from.
  * @param x X coordinate of the pixel.
  * @param y Y coordinate of the pixel.
@@ -272,7 +298,8 @@ uint32_t			mlx_get_pixel(mlx_image_t *image, int x, int y);
  * This is what the norme makes us do :(
  *
  */
-void	draw_texture_area_scaled(mlx_t *mlx, mlx_image_t *img, mlx_texture_t *texture, t_vector *area);
+void				draw_texture_area_scaled(mlx_t *mlx, mlx_image_t *img,
+						mlx_texture_t *texture, t_vector *area);
 
 /**
  * @brief Given a bit set, and a bit count, reverses the bits.
@@ -282,7 +309,7 @@ void	draw_texture_area_scaled(mlx_t *mlx, mlx_image_t *img, mlx_texture_t *textu
  * of the uint32_t.
  * @return Reversed bit set.
  */
-uint32_t revert_bits(uint32_t set, int count);
+uint32_t			revert_bits(uint32_t set, int count);
 
 /**
  * @brief Given a value, the range it is currently in, and the desired range,
@@ -292,6 +319,77 @@ uint32_t revert_bits(uint32_t set, int count);
  * @param new_range New/desired range.
  * @return Mapped value.
  */
-double	map_range(double value, t_vector old_range, t_vector new_range);
+double				map_range(double value, t_vector old_range,
+						t_vector new_range);
+
+/**
+ * @brief Fills and image with the given color.
+ * @param img MLX image to fill.
+ * @param color Color in RGBA 32 bit format.
+ */
+void				mlx_fill_image(mlx_image_t *img, uint32_t color);
+
+/**
+ * @brief Render logic goes here
+ * @param data
+ */
+void				render(t_data *data);
+
+/**
+ * @brief Updates the minimap
+ * @param data
+ */
+void				draw_minimap(t_data *data);
+
+/**
+ * @brief Simple line-drawing function.
+ * @param img MLX image to draw to.
+ * @param edge Edge/segment to draw.
+ * @param color Color of the line.
+ */
+void				draw_line(mlx_image_t *img, t_edge edge, uint32_t color);
+
+/**
+ * @brief Wrapper for @c mlx_put_pixel to avoid segfaults.
+ * @param img
+ * @param x
+ * @param y
+ * @param color
+ */
+void				put_pixel(mlx_image_t *img, int x, int y, uint32_t color);
+
+/**
+ * @brief Simple function for drawing circles
+ * @param img
+ * @param pos
+ * @param radius
+ * @param color
+ */
+void				draw_circle(mlx_image_t *img, t_vector pos,
+						double radius, uint32_t color);
+
+/**
+ * @brief Calculate player collision with the map.
+ * @param data
+ */
+void				collisions(t_data *data);
+
+/**
+ * @brief Add a wall to the map.
+ * @param data
+ * @param pos Position of the wall.
+ * @param direction Cardinal direction of the wall (0 = north, 1 = east, 2 =
+ * south, 3 = west).
+ */
+void				add_wall(t_data *data, t_vector pos, int direction);
+
+/**
+ * @brief Load a map from an integer array.
+ * @param data
+ * @param arr Integer array containing the map. (0 = empty, 1 = wall,
+ * 2 = player)
+ * @param shape
+ */
+void				load_map_from_ints(t_data *data, const int *arr, t_vector shape);
 
 #endif //CUB3D_H

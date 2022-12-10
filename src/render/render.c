@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:06:30 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 15:06:58 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/10 20:04:58 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	render(t_data *data)
 {
-	(void)data;
+	mlx_fill_image(data->img, 0x000033FF);
+	draw_minimap(data);
 }

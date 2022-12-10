@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:55:23 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 19:50:54 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/10 23:38:09 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	init_player(t_data *data, t_vector pos, double angle)
 	double	radians;
 
 	i = 0;
-	data->player_pos = pos;
+	data->player_pos = vector_add(vector_scale(pos, MINIMAP_SCALE),
+			(t_vector){PLAYER_HITBOX_RADIUS, PLAYER_HITBOX_RADIUS});
 	data->player_dir = vector_from_angle(angle);
 	while (i < FOV * RAYS)
 	{
@@ -37,7 +38,12 @@ t_data	*init_data(void)
 
 	data = ft_calloc(1, sizeof(t_data));
 	data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", 0);
+	data->minimap = mlx_new_image(data->mlx, MINIMAP_WIDTH, MINIMAP_HEIGHT);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	data->minimap_offset = (t_vector){0, 0};
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
+	mlx_image_to_window(data->mlx, data->minimap, 0, 0);
+	mlx_set_instance_depth(&data->minimap->instances[0], 1);
+	mlx_set_instance_depth(&data->img->instances[0], 0);
 	return (data);
 }
