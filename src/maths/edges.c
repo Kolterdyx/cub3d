@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:59 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 23:24:54 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/10 23:25:09 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,12 @@ int	edge_intersects_circle(t_edge a, t_vector center, double radius,
 {
 	t_vector	abc[2];
 	double		ab2;
-	double		ac2;
 	double		t;
 	t_vector	closest;
 
 	abc[0] = vector_sub(a.end, a.start);
 	ab2 = vector_dot(abc[0], abc[0]);
 	abc[1] = vector_sub(center, a.start);
-	ac2 = vector_dot(abc[1], abc[1]);
 	t = vector_dot(abc[1], abc[0]) / ab2;
 	if (t < 0)
 		closest = a.start;

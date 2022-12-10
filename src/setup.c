@@ -6,26 +6,23 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:55:23 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 23:38:09 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 00:14:32 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_player(t_data *data, t_vector pos, double angle)
+void	init_player(t_data *data, t_vector pos)
 {
 	int		i;
-	double	a;
 	double	radians;
 
 	i = 0;
 	data->player_pos = vector_add(vector_scale(pos, MINIMAP_SCALE),
 			(t_vector){PLAYER_HITBOX_RADIUS, PLAYER_HITBOX_RADIUS});
-	data->player_dir = vector_from_angle(angle);
 	while (i < FOV * RAYS)
 	{
-		a = (i * (FOV / RAYS)) - (FOV / 2);
-		radians = angle + (a * M_PI / 180);
+		radians = data->player_angle + ((i / RAYS) * M_PI / 180);
 		ft_lstadd_back(&data->rays,
 			ft_lstnew(vector_copy(vector_from_angle(radians))));
 		i++;

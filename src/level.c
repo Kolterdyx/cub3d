@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:08:50 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 23:36:01 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/10 23:37:20 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	load_map_from_ints(t_data *data, const int *arr, t_vector shape)
 					add_wall(data, (t_vector){x, y}, 3);
 			}
 			if (arr[(int)(y * shape.x + x)] == 2)
-				init_player(data, (t_vector){x, y}, 0);
+				init_player(data, (t_vector){x, y});
 		}
 	}
 }

@@ -18,6 +18,7 @@ void	draw_minimap(t_data *data)
 	t_edge	edge;
 
 	mlx_fill_image(data->minimap, 0xFF);
+	rays(data);
 	edges = data->edges;
 	while (edges)
 	{

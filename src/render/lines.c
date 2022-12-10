@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 20:12:19 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 21:47:47 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/10 23:53:17 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ void	draw_line(mlx_image_t *img, t_edge edge, uint32_t color)
 	uint32_t	len = (uint32_t)vector_distance(edge.start, edge.end);
 	t_vector	u = vector_normalize(vector_sub(edge.end, edge.start));
 	t_vector	d = u;
-	t_vector p;
-	uint32_t i = 0;
+	t_vector	p;
+	uint32_t	i;
 
+	i = 0;
 	while (i < len)
 	{
 		p = vector_add(d, edge.start);

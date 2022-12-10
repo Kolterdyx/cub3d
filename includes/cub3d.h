@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 23:22:42 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 00:21:23 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
-# define FOV 60.0
-# define RAYS 600
+# define FOV 90.0
+# define RAYS 60
+# define RAY_LENGTH 20
 
-# define MINIMAP_WIDTH 600
-# define MINIMAP_HEIGHT 600
-# define MINIMAP_SCALE 30
+# define MINIMAP_WIDTH 300
+# define MINIMAP_HEIGHT 300
+# define MINIMAP_SCALE 20
 
 # define PLAYER_SPEED 1
-# define PLAYER_ROTATION_SPEED 5
+# define PLAYER_ROTATION_SPEED 0.1
 # define PLAYER_HITBOX_RADIUS 10
 
 /**
@@ -69,7 +70,7 @@ typedef struct s_edge
  * @param ceiling_color The color of the ceiling (RGBA 32bit format).
  * @param edges Double linked list of edges to intersect.
  * @param player_pos The player's position as a vector.
- * @param player_dir The player's direction as a unit vector.
+ * @param player_angle The player's angle in radians.
  * @param rays Double linked list of vectors that will be used for ray casting.
  *
  */
@@ -91,7 +92,7 @@ typedef struct t_data
 	mlx_texture_t	*wall_west;
 
 	t_vector		player_pos;
-	t_vector		player_dir;
+	double			player_angle;
 	t_list			*rays;
 }					t_data;
 
@@ -245,9 +246,8 @@ t_data				*init_data(void);
  * @brief Initialize the player's position, direction, and rays.
  * @param data The data structure to modify.
  * @param pos The player's position.
- * @param angle The player's angle in radians.
  */
-void				init_player(t_data *data, t_vector pos, double angle);
+void				init_player(t_data *data, t_vector pos);
 
 /**
  * @brief Create a new image from a cropped region of an existing texture.
@@ -390,6 +390,9 @@ void				add_wall(t_data *data, t_vector pos, int direction);
  * 2 = player)
  * @param shape
  */
-void				load_map_from_ints(t_data *data, const int *arr, t_vector shape);
+void				load_map_from_ints(t_data *data, const int *arr,
+						t_vector shape);
+
+void				rays(t_data *data);
 
 #endif //CUB3D_H
