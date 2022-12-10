@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 17:32:09 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/10 19:40:26 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,8 +255,43 @@ mlx_image_t			*scale_image(mlx_t *mlx, mlx_image_t *img, t_vector scale);
  */
 uint32_t			mlx_get_pixel(mlx_image_t *image, int x, int y);
 
+/**
+ * @brief Given an area, scale and offset, crop, scale and display a texture on
+ * the corresponding location
+ * @param mlx MLX instance
+ * @param img MLX image to draw to
+ * @param texture Texture to crop, scale and offset
+ * @param area This is an array of 4 t_vector. Here is an example: @code
+ * (t_vector[4]){
+ *     (t_vector){0, 0},    //area origin
+ *     (t_vector){32, 32},  //area size
+ *     (t_vector){1, 1},    //scale vector
+ *     (t_vector){10, 10}   //offset vector
+ * }
+ * @endcode
+ * This is what the norme makes us do :(
+ *
+ */
 void	draw_texture_area_scaled(mlx_t *mlx, mlx_image_t *img, mlx_texture_t *texture, t_vector *area);
 
+/**
+ * @brief Given a bit set, and a bit count, reverses the bits.
+ * @param set Set of bits. Can't be larger than a uint32_t.
+ * @param count Number of bits to flip (from the right). The first bit will end
+ * up at the position of the last bit, even if that happens to be in the middle
+ * of the uint32_t.
+ * @return Reversed bit set.
+ */
 uint32_t revert_bits(uint32_t set, int count);
+
+/**
+ * @brief Given a value, the range it is currently in, and the desired range,
+ * maps the value to be the same proportional value in the new range
+ * @param value Value to map.
+ * @param old_range Old/current range.
+ * @param new_range New/desired range.
+ * @return Mapped value.
+ */
+double	map_range(double value, t_vector old_range, t_vector new_range);
 
 #endif //CUB3D_H
