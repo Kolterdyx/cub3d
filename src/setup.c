@@ -26,7 +26,7 @@ void	init_player(t_data *data, t_vector pos, double angle)
 		a = (i * (FOV / RAYS)) - (FOV / 2);
 		radians = angle + (a * M_PI / 180);
 		ft_lstadd_back(&data->rays,
-			ft_lstnew(vector_copy(vector_from_angle(radians))));
+						ft_lstnew(vector_copy(vector_from_angle(radians))));
 		i++;
 	}
 }
