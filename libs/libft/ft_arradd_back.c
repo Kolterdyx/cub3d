@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_arradd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 23:33:25 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/09 01:43:56 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/10 14:18:45 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	**ft_arradd_back(char **arr, char *value)
 {
-	char **new;
-	int i;
+	char	**new;
+	int		i;
 
 	i = 0;
 	while (arr && arr[i])

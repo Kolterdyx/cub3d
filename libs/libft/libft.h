@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 23:33:25 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/11/28 19:08:04 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/10 14:21:18 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ int					printf_count_digits(unsigned long long n, int neg,
 						int base);
 int					ft_putunbr(unsigned int num);
 int					printf_putnbr(int num);
-char				*get_next_line(int fd);
+
+/* CUSTOM */
+
+char				**ft_arradd_back(char **arr, char *value);
 
 #endif
