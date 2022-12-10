@@ -13,6 +13,7 @@ SRC_FILES = main.c \
 			maths/vector_functions_3.c \
 			maths/edges.c \
 			maths/bit_stuff.c \
+			maths/utils.c \
 			parser/parser.c \
 			setup.c \
 			render/render.c \
