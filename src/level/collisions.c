@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 22:36:27 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 23:18:15 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 14:47:03 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,10 @@ void	collisions(t_data *data)
 		}
 		node = node->next;
 	}
+}
+
+t_vector	speed_at_relative_angle(t_data *data, double angle)
+{
+	return (vector_scale(vector_from_angle(data->player_angle
+			+ (FOV * M_PI / 180) / 2 + angle), PLAYER_SPEED * MINIMAP_SCALE));
 }

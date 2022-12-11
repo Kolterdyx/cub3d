@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 01:19:59 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 14:50:48 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@
 
 # define MINIMAP_WIDTH 600
 # define MINIMAP_HEIGHT 600
-# define MINIMAP_SCALE 40
+# define MINIMAP_SCALE 20
 
-# define PLAYER_SPEED 1
+# define PLAYER_SPEED 0.05
 # define PLAYER_ROTATION_SPEED 0.1
-# define PLAYER_HITBOX_RADIUS 10
+# define PLAYER_HITBOX_RADIUS 5
 
 /**
  * @brief 2D vector
@@ -407,5 +407,13 @@ void				rays(t_data *data);
  */
 void				draw_rectangle(mlx_image_t *img, t_vector pos,
 						t_vector size, uint32_t color);
+
+/**
+ * @brief Get the velocity vector of the player based on a relative angle.
+ * @param data
+ * @param angle Relative angle in radians.
+ * @return Velocity vector.
+ */
+t_vector			speed_at_relative_angle(t_data *data, double angle);
 
 #endif //CUB3D_H

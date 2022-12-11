@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 00:25:04 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 14:49:22 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,13 @@ void	update(t_data *data)
 
 	vel = (t_vector){0, 0};
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
-		vel = vector_scale(
-				vector_from_angle(data->player_angle
-					+ (FOV * M_PI / 180) / 2), PLAYER_SPEED);
+		vel = speed_at_relative_angle(data, 0);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
-		vel = vector_scale(
-				vector_from_angle(data->player_angle
-					+ M_PI + (FOV * M_PI / 180) / 2), PLAYER_SPEED);
+		vel = speed_at_relative_angle(data, M_PI);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
-		vel = vector_scale(
-				vector_from_angle(data->player_angle
-					- M_PI_2 + (FOV * M_PI / 180) / 2), PLAYER_SPEED);
+		vel = speed_at_relative_angle(data, -M_PI_2);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
-		vel = vector_scale(
-				vector_from_angle(data->player_angle + M_PI_2
-					+ (FOV * M_PI / 180) / 2), PLAYER_SPEED);
+		vel = speed_at_relative_angle(data, M_PI_2);
 	data->player_pos = vector_add(data->player_pos, vel);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 		data->player_angle -= PLAYER_ROTATION_SPEED;

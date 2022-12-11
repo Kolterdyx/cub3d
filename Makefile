@@ -21,8 +21,8 @@ SRC_FILES = main.c \
 			render/lines.c \
 			render/rays.c \
 			render/texture_utils.c \
-			level.c \
-			collisions.c
+			level/level.c \
+			level/collisions.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 
