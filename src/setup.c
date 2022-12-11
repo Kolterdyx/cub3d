@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:55:23 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 01:24:57 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 14:58:19 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	init_player(t_data *data, t_vector pos)
 
 	i = 0;
 	data->player_pos = vector_add(vector_scale(pos, MINIMAP_SCALE),
-			(t_vector){PLAYER_HITBOX_RADIUS, PLAYER_HITBOX_RADIUS});
+			vector_scale((t_vector){PLAYER_HITBOX_RADIUS, PLAYER_HITBOX_RADIUS},
+				MINIMAP_SCALE));
 	while (i < FOV * RAYS)
 	{
 		radians = data->player_angle + ((i / RAYS) * M_PI / 180);

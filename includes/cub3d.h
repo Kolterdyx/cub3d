@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 14:50:48 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 15:03:18 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,17 @@
 
 # define FOV 90.0
 # define RAYS 60
+// Length in map units (1 * MINIMAP_SCALE) of a ray
 # define RAY_LENGTH 20
 
 # define MINIMAP_WIDTH 600
 # define MINIMAP_HEIGHT 600
 # define MINIMAP_SCALE 20
 
+// These values here are a proportion of the minimap scale
 # define PLAYER_SPEED 0.05
 # define PLAYER_ROTATION_SPEED 0.1
-# define PLAYER_HITBOX_RADIUS 5
+# define PLAYER_HITBOX_RADIUS 0.25
 
 /**
  * @brief 2D vector

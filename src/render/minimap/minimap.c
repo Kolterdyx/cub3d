@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:54:38 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 01:28:28 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 15:00:41 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	draw_minimap(t_data *data)
 		draw_line(data->minimap, edge, 0xFFFFFFFF);
 		edges = edges->next;
 	}
-	draw_circle(data->minimap, data->player_pos, PLAYER_HITBOX_RADIUS,
-		0x00FF00FF);
+	draw_circle(data->minimap, data->player_pos, PLAYER_HITBOX_RADIUS
+		* MINIMAP_SCALE, 0x00FF00FF);
 	draw_line(data->minimap, (t_edge){(t_vector){0, 0},
 		(t_vector){MINIMAP_WIDTH, 0}, 0}, 0xFFFFFFFF);
 	draw_line(data->minimap, (t_edge){

@@ -6,34 +6,34 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:08:50 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 23:37:20 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 14:55:50 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+t_edge	*make_wall_edge(t_vector a, t_vector b, int dir)
+{
+	return (edge_alloc(vector_scale(a, MINIMAP_SCALE),
+			vector_scale(b, MINIMAP_SCALE), dir));
+}
 
 void	add_wall(t_data *data, t_vector pos, int direction)
 {
 	t_edge		*edge;
 
 	if (direction == 0)
-		edge = edge_alloc(vector_scale((t_vector){pos.x, pos.y},
-					MINIMAP_SCALE), vector_scale(
-					(t_vector){pos.x + 1, pos.y}, MINIMAP_SCALE), direction);
+		edge = make_wall_edge((t_vector){pos.x, pos.y},
+				(t_vector){pos.x + 1, pos.y}, direction);
 	else if (direction == 1)
-		edge = edge_alloc(vector_scale((t_vector){pos.x + 1, pos.y},
-					MINIMAP_SCALE), vector_scale(
-					(t_vector){pos.x + 1, pos.y + 1},
-					MINIMAP_SCALE), direction);
+		edge = make_wall_edge((t_vector){pos.x + 1, pos.y},
+				(t_vector){pos.x + 1, pos.y + 1}, direction);
 	else if (direction == 2)
-		edge = edge_alloc(vector_scale((t_vector){pos.x, pos.y + 1},
-					MINIMAP_SCALE), vector_scale(
-					(t_vector){pos.x + 1, pos.y + 1},
-					MINIMAP_SCALE), direction);
+		edge = make_wall_edge((t_vector){pos.x, pos.y + 1},
+				(t_vector){pos.x + 1, pos.y + 1}, direction);
 	else if (direction == 3)
-		edge = edge_alloc(vector_scale((t_vector){pos.x, pos.y},
-					MINIMAP_SCALE), vector_scale(
-					(t_vector){pos.x, pos.y + 1}, MINIMAP_SCALE), direction);
+		edge = make_wall_edge((t_vector){pos.x, pos.y},
+				(t_vector){pos.x, pos.y + 1}, direction);
 	else
 		return ;
 	ft_lstadd_back(&data->edges, ft_lstnew(edge));
