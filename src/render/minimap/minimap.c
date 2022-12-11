@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:54:38 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 23:23:53 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 01:28:28 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	draw_minimap(t_data *data)
 	while (edges)
 	{
 		edge = *((t_edge *)edges->content);
-		edge.start = vector_add(data->minimap_offset, edge.start);
-		edge.end = vector_add(data->minimap_offset, edge.end);
 		draw_line(data->minimap, edge, 0xFFFFFFFF);
 		edges = edges->next;
 	}

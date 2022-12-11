@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 00:39:03 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 01:19:59 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ typedef struct t_data
 	mlx_image_t		*img;
 
 	mlx_image_t		*minimap;
-	t_vector		minimap_offset;
 
 	uint32_t		floor_color;
 	uint32_t		ceiling_color;
@@ -393,6 +392,20 @@ void				add_wall(t_data *data, t_vector pos, int direction);
 void				load_map_from_ints(t_data *data, const int *arr,
 						t_vector shape);
 
+/**
+ * @brief Process raycasting for all rays.
+ * @param data
+ */
 void				rays(t_data *data);
+
+/**
+ * @brief Draw a full rectangle.
+ * @param img MLX image to draw to.
+ * @param pos Start position of the rectangle.
+ * @param size Size of the rectangle.
+ * @param color Color of the rectangle in RGBA 32 bit format.
+ */
+void				draw_rectangle(mlx_image_t *img, t_vector pos,
+						t_vector size, uint32_t color);
 
 #endif //CUB3D_H

@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:59:40 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 00:58:18 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 01:29:40 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ void	rays(t_data *data)
 	while (ray_node)
 	{
 		ray_vec = *((t_vector *)ray_node->content);
-		ray_edge = (t_edge){data->player_pos, vector_add(data->player_pos, vector_rotate(vector_scale(ray_vec, RAY_LENGTH * MINIMAP_SCALE), data->player_angle)), 0};
+		ray_edge = (t_edge){data->player_pos, vector_add(data->player_pos,
+				vector_rotate(vector_scale(ray_vec, RAY_LENGTH
+						* MINIMAP_SCALE), data->player_angle)), 0};
 		cast_and_draw_ray(data, ray_edge);
 		ray_node = ray_node->next;
 	}

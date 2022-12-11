@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:55:23 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 00:14:32 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 01:24:57 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_data	*init_data(void)
 	data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", 0);
 	data->minimap = mlx_new_image(data->mlx, MINIMAP_WIDTH, MINIMAP_HEIGHT);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->minimap_offset = (t_vector){0, 0};
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
 	mlx_image_to_window(data->mlx, data->minimap, 0, 0);
 	mlx_set_instance_depth(&data->minimap->instances[0], 1);

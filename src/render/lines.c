@@ -54,3 +54,21 @@ void	draw_circle(mlx_image_t *img, t_vector pos, double radius,
 		i += 0.1;
 	}
 }
+
+void	draw_rectangle(mlx_image_t *img, t_vector pos, t_vector size,
+		uint32_t color)
+{
+	t_vector	p;
+
+	p.y = pos.y;
+	while (p.y < pos.y + size.y)
+	{
+		p.x = pos.x;
+		while (p.x < pos.x + size.x)
+		{
+			put_pixel(img, p.x, p.y, color);
+			p.x++;
+		}
+		p.y++;
+	}
+}
