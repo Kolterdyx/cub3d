@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:55:23 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 02:54:26 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 03:33:17 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_player(t_data *data, t_vector pos)
 	i = 0;
 	data->player_pos = vector_add(vector_scale(pos, TILE_SIZE),
 			vector_scale((t_vector){PLAYER_HITBOX_RADIUS, PLAYER_HITBOX_RADIUS},
-						 TILE_SIZE));
+				TILE_SIZE));
 	data->player_angle = M_PI_2 + M_PI / 8;
 	while (i < RAYS)
 	{

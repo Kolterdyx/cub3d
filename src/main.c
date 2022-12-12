@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 16:41:02 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 04:08:22 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,22 @@ void	loop(void *param)
 	render(data);
 }
 
+void	ft_exit(t_data *data, int code)
+{
+	mlx_terminate(data->mlx);
+	mlx_delete_image(data->mlx, data->img);
+	mlx_delete_image(data->mlx, data->minimap);
+	mlx_delete_texture(data->wall_textures[0]);
+	mlx_delete_texture(data->wall_textures[1]);
+	mlx_delete_texture(data->wall_textures[2]);
+	mlx_delete_texture(data->wall_textures[3]);
+	free(data->wall_textures);
+	ft_lstclear(&data->edges, free);
+	ft_lstclear(&data->rays, free);
+	free(data->mlx);
+	exit(code);
+}
+
 int	main(void)
 {
 	t_data	*data;
@@ -61,7 +77,5 @@ int	main(void)
 	mlx_key_hook(data->mlx, key_hook, data);
 	mlx_cursor_hook(data->mlx, cursor_hook, data);
 	mlx_loop(data->mlx);
-	ft_lstclear(&data->edges, free);
-	mlx_terminate(data->mlx);
-	return (0);
+	ft_exit(data, 0);
 }

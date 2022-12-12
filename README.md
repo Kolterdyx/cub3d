@@ -88,6 +88,8 @@ WE{1 or more spaces}./path_to_the_west_texture
 {0 or more empty lines}
 EA{1 or more spaces}./path_to_the_east_texture
 {0 or more empty lines}
+SP{1 or more spaces}./path_to_the_sprite_texture{1 or more spaces}width{1 or more spaces}height{1 or more spaces}number_of_sprites
+{0 or more empty lines}
 F{1 or more spaces}220,100,0
 {0 or more empty lines}
 C{1 or more spaces}225,30,0
@@ -96,6 +98,43 @@ C{1 or more spaces}225,30,0
 {map at the end}
 {for simplicity's sake, we can interpret spaces as zeros when building the 
 map except for map validation}
+        1111111111111111111111111
+        1000000000110000000000001
+        1011000001110000000000001
+        1001000000000000000000001
+111111111011000001110000000000001
+100000000011000001110111111111111
+11110111111111011100000010001
+11110111111111011101010010001
+11000000110101011100000010001
+10000000000000001100000010001
+10000000000000001101010010001
+11000001110101011111011110N0111
+11110111 1110101 101111010001
+11111111 1111111 111111111111
+```
+
+Here is an example of a valid map:
+
+```
+NO  ./assets/north_test.png
+SO ./assets/south_test.png
+WE    ./assets/west_test.png
+
+
+EA   ./assets/east_test.png
+
+
+
+
+F    220,100,0
+
+C  225,30,0
+
+
+
+
+
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
