@@ -505,4 +505,14 @@ void				render_wall(t_data *data, t_edge rect, t_vec hit_pos);
  */
 t_vec				wall_pos(t_vec pos, int dir);
 
+/**
+ * @brief Create an RGBA 32 bit color from 3 separate values. Alpha channel is
+ * fixed to 255.
+ * @param r Red channel. (0-255)
+ * @param g Green channel. (0-255)
+ * @param b Blue channel. (0-255)
+ * @return Color in RGBA 32 bit format.
+ */
+uint32_t			rgb_to_int(int r, int g, int b);
+
 #endif //CUB3D_H

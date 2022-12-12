@@ -32,3 +32,8 @@ void	mlx_fill_image(mlx_image_t *img, uint32_t color)
 		y++;
 	}
 }
+
+uint32_t	rgb_to_int(int r, int g, int b)
+{
+	return ((r << 24) | (g << 16) | (b << 8) | 0xFF);
+}
