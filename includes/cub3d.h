@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 16:44:01 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 03:23:44 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 960.
+# define HEIGHT 540.
 
-# define FOV 90.0
-# define RAYS 60
-// Length in map units (1 * MINIMAP_SCALE) of a ray
-# define RAY_LENGTH 20
+# define FOV 60.
+# define RAYS 1500.
+// Length in map units (1 * TILE_SIZE) of a ray
+# define RAY_LENGTH 20.
 
-# define MINIMAP_WIDTH 600
-# define MINIMAP_HEIGHT 600
-# define MINIMAP_SCALE 40
+# define MINIMAP_WIDTH 240.
+# define MINIMAP_HEIGHT 240.
+# define TILE_SIZE 20.
 
 // These values here are a proportion of the minimap scale
 # define PLAYER_SPEED 0.05
@@ -74,6 +74,8 @@ typedef struct s_edge
  * @param player_pos The player's position as a vector.
  * @param player_angle The player's angle in radians.
  * @param rays Double linked list of vectors that will be used for ray casting.
+ * @param wall_textures Array of wall textures. (0 = North, 1 = East, 2 = South,
+ * 3 = West).
  *
  */
 typedef struct t_data
@@ -87,10 +89,8 @@ typedef struct t_data
 	uint32_t		ceiling_color;
 	t_list			*edges;
 
-	mlx_texture_t	*wall_north;
-	mlx_texture_t	*wall_south;
-	mlx_texture_t	*wall_east;
-	mlx_texture_t	*wall_west;
+	mlx_texture_t	**wall_textures;
+	t_vector		texture_size;
 
 	t_vector		last_mousepos;
 

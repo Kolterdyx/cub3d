@@ -27,7 +27,7 @@ void	draw_minimap(t_data *data)
 		edges = edges->next;
 	}
 	draw_circle(data->minimap, data->player_pos, PLAYER_HITBOX_RADIUS
-		* MINIMAP_SCALE, 0x00FF00FF);
+												 * TILE_SIZE, 0x00FF00FF);
 	draw_line(data->minimap, (t_edge){(t_vector){0, 0},
 		(t_vector){MINIMAP_WIDTH, 0}, 0}, 0xFFFFFFFF);
 	draw_line(data->minimap, (t_edge){

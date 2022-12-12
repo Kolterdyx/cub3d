@@ -14,8 +14,8 @@
 
 t_edge	*make_wall_edge(t_vector a, t_vector b, int dir)
 {
-	return (edge_alloc(vector_scale(a, MINIMAP_SCALE),
-			vector_scale(b, MINIMAP_SCALE), dir));
+	return (edge_alloc(vector_scale(a, TILE_SIZE),
+					   vector_scale(b, TILE_SIZE), dir));
 }
 
 void	add_wall(t_data *data, t_vector pos, int direction)

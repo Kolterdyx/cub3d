@@ -3,7 +3,7 @@ NAME = cub3D
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g -MD
+CFLAGS = -Wall -Wextra -Werror -MD
 
 SRC_PATH = src
 SRC_FILES = main.c \
