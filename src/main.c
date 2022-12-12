@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 04:08:22 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 04:12:39 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_exit(t_data *data, int code)
 	free(data->wall_textures);
 	ft_lstclear(&data->edges, free);
 	ft_lstclear(&data->rays, free);
-	free(data->mlx);
+	free(data);
 	exit(code);
 }
 
