@@ -6,40 +6,52 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:08:50 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 14:55:50 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 04:49:28 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_edge	*make_wall_edge(t_vector a, t_vector b, int dir)
+t_edge	*make_wall_edge(t_vec a, t_vec b, int dir)
 {
-	return (edge_alloc(vector_scale(a, TILE_SIZE),
-					   vector_scale(b, TILE_SIZE), dir));
+	return (edge_alloc(vec_scl(a, TILE_SIZE),
+					   vec_scl(b, TILE_SIZE), dir));
 }
 
-void	add_wall(t_data *data, t_vector pos, int direction)
+void	add_wall(t_data *data, t_vec pos, int direction)
 {
 	t_edge		*edge;
 
 	if (direction == 0)
-		edge = make_wall_edge((t_vector){pos.x, pos.y},
-				(t_vector){pos.x + 1, pos.y}, direction);
+		edge = make_wall_edge((t_vec){pos.x, pos.y},
+							  (t_vec){pos.x + 1, pos.y}, direction);
 	else if (direction == 1)
-		edge = make_wall_edge((t_vector){pos.x + 1, pos.y},
-				(t_vector){pos.x + 1, pos.y + 1}, direction);
+		edge = make_wall_edge((t_vec){pos.x + 1, pos.y},
+							  (t_vec){pos.x + 1, pos.y + 1}, direction);
 	else if (direction == 2)
-		edge = make_wall_edge((t_vector){pos.x, pos.y + 1},
-				(t_vector){pos.x + 1, pos.y + 1}, direction);
+		edge = make_wall_edge((t_vec){pos.x, pos.y + 1},
+							  (t_vec){pos.x + 1, pos.y + 1}, direction);
 	else if (direction == 3)
-		edge = make_wall_edge((t_vector){pos.x, pos.y},
-				(t_vector){pos.x, pos.y + 1}, direction);
+		edge = make_wall_edge((t_vec){pos.x, pos.y},
+							  (t_vec){pos.x, pos.y + 1}, direction);
 	else
 		return ;
-	ft_lstadd_back(&data->edges, ft_lstnew(edge));
+	ft_lstadd_back(&data->wall_edges, ft_lstnew(edge));
 }
 
-void	load_map_from_ints(t_data *data, const int *arr, t_vector shape)
+void	wall_case(t_data *data, t_vec pos, t_vec shape, const int *arr)
+{
+	if (pos.y == 0 || !arr[(int)((pos.y - 1) * shape.x + pos.x)])
+		add_wall(data, (t_vec){pos.x, pos.y}, 0);
+	if (pos.x == (int)shape.x - 1 || !arr[(int)(pos.y * shape.x + pos.x + 1)])
+		add_wall(data, (t_vec){pos.x, pos.y}, 1);
+	if (pos.y == (int)shape.y - 1 || !arr[(int)((pos.y + 1) * shape.x + pos.x)])
+		add_wall(data, (t_vec){pos.x, pos.y}, 2);
+	if (pos.x == 0 || !arr[(int)(pos.y * shape.x + pos.x - 1)])
+		add_wall(data, (t_vec){pos.x, pos.y}, 3);
+}
+
+void	init_map(t_data *data, const int *arr, t_vec shape)
 {
 	int	x;
 	int	y;
@@ -51,18 +63,13 @@ void	load_map_from_ints(t_data *data, const int *arr, t_vector shape)
 		while (++x < shape.x)
 		{
 			if (arr[(int)(y * shape.x + x)] == 1)
-			{
-				if (y == 0 || !arr[(int)((y - 1) * shape.x + x)])
-					add_wall(data, (t_vector){x, y}, 0);
-				if (x == (int)shape.x - 1 || !arr[(int)(y * shape.x + x + 1)])
-					add_wall(data, (t_vector){x, y}, 1);
-				if (y == (int)shape.y - 1 || !arr[(int)((y + 1) * shape.x + x)])
-					add_wall(data, (t_vector){x, y}, 2);
-				if (x == 0 || !arr[(int)(y * shape.x + x - 1)])
-					add_wall(data, (t_vector){x, y}, 3);
-			}
+				wall_case(data, (t_vec){x, y}, shape, arr);
 			if (arr[(int)(y * shape.x + x)] == 2)
-				init_player(data, (t_vector){x, y});
+				init_player(data, (t_vec){x, y});
+			if (arr[(int)(y * shape.x + x)] == 3)
+				init_sprite(data, (t_vec){x, y});
+			if (arr[(int)(y * shape.x + x)] == 4)
+				init_door(data, (t_vec){x, y}, shape, arr);
 		}
 	}
 }

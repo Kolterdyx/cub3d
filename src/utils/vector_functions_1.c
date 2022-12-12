@@ -12,27 +12,27 @@
 
 #include "cub3d.h"
 
-double	vector_dot(t_vector a, t_vector b)
+double	vec_dot(t_vec a, t_vec b)
 {
 	return (a.x * b.x + a.y * b.y);
 }
 
-t_vector	vector_sub(t_vector a, t_vector b)
+t_vec	sub_vec(t_vec a, t_vec b)
 {
-	return ((t_vector){a.x - b.x, a.y - b.y});
+	return ((t_vec){a.x - b.x, a.y - b.y});
 }
 
-t_vector	vector_add(t_vector a, t_vector b)
+t_vec	add_vec(t_vec a, t_vec b)
 {
-	return ((t_vector){a.x + b.x, a.y + b.y});
+	return ((t_vec){a.x + b.x, a.y + b.y});
 }
 
-t_vector	vector_scale(t_vector a, double b)
+t_vec	vec_scl(t_vec a, double b)
 {
-	return ((t_vector){a.x * b, a.y * b});
+	return ((t_vec){a.x * b, a.y * b});
 }
 
-t_vector	vector_normalize(t_vector a)
+t_vec	vec_unit(t_vec a)
 {
-	return (vector_scale(a, 1. / sqrt(vector_dot(a, a))));
+	return (vec_scl(a, 1. / sqrt(vec_dot(a, a))));
 }

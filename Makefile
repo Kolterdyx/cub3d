@@ -8,12 +8,13 @@ CFLAGS = -Wall -Wextra -Werror -MD -g
 SRC_PATH = src
 SRC_FILES = main.c \
 			hooks.c \
-			maths/vector_functions_1.c \
-			maths/vector_functions_2.c \
-			maths/vector_functions_3.c \
-			maths/edges.c \
-			maths/bit_stuff.c \
-			maths/utils.c \
+			utils/vector_functions_1.c \
+			utils/vector_functions_2.c \
+			utils/vector_functions_3.c \
+			utils/edges.c \
+			utils/bit_stuff.c \
+			utils/utils.c \
+			utils/array_utils.c \
 			parser/parser.c \
 			setup.c \
 			render/render.c \
@@ -22,6 +23,7 @@ SRC_FILES = main.c \
 			render/rays.c \
 			render/texture_utils.c \
 			level/level.c \
+			level/level_elements.c \
 			level/collisions.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))

@@ -6,11 +6,24 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:54:38 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 15:00:41 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 06:20:36 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	draw_doors(t_data *data) {
+	t_list	*doors;
+	t_door	door;
+
+	doors = data->doors;
+	while (doors)
+	{
+		door = *((t_door *) doors->content);
+		draw_line(data->minimap, door.edge, 0xFF00FFFF);
+		doors = doors->next;
+	}
+}
 
 void	draw_minimap(t_data *data)
 {
@@ -19,7 +32,8 @@ void	draw_minimap(t_data *data)
 
 	mlx_fill_image(data->minimap, 0xFF);
 	rays(data);
-	edges = data->edges;
+	draw_doors(data);
+	edges = data->wall_edges;
 	while (edges)
 	{
 		edge = *((t_edge *)edges->content);
@@ -28,13 +42,15 @@ void	draw_minimap(t_data *data)
 	}
 	draw_circle(data->minimap, data->player_pos, PLAYER_HITBOX_RADIUS
 												 * TILE_SIZE, 0x00FF00FF);
-	draw_line(data->minimap, (t_edge){(t_vector){0, 0},
-		(t_vector){MINIMAP_WIDTH, 0}, 0}, 0xFFFFFFFF);
+	draw_circle(data->minimap, data->player_pos, PLAYER_INTERACTION_RADIUS
+												 * TILE_SIZE, 0x00FF00FF);
+	draw_line(data->minimap, (t_edge){(t_vec){0, 0},
+									  (t_vec){MINIMAP_WIDTH, 0}, 0}, 0xFFFFFFFF);
 	draw_line(data->minimap, (t_edge){
-		(t_vector){0, MINIMAP_HEIGHT - 1},
-		(t_vector){MINIMAP_WIDTH, MINIMAP_HEIGHT - 1}, 0}, 0xFFFFFFFF);
-	draw_line(data->minimap, (t_edge){(t_vector){0, 0}, (t_vector){0,
-		MINIMAP_HEIGHT}, 0}, 0xFFFFFFFF);
-	draw_line(data->minimap, (t_edge){(t_vector){MINIMAP_WIDTH - 1, 0},
-		(t_vector){MINIMAP_WIDTH - 1, MINIMAP_HEIGHT}, 0}, 0xFFFFFFFF);
+			(t_vec){0, MINIMAP_HEIGHT - 1},
+			(t_vec){MINIMAP_WIDTH, MINIMAP_HEIGHT - 1}, 0}, 0xFFFFFFFF);
+	draw_line(data->minimap, (t_edge){(t_vec){0, 0}, (t_vec){0,
+															 MINIMAP_HEIGHT}, 0}, 0xFFFFFFFF);
+	draw_line(data->minimap, (t_edge){(t_vec){MINIMAP_WIDTH - 1, 0},
+									  (t_vec){MINIMAP_WIDTH - 1, MINIMAP_HEIGHT}, 0}, 0xFFFFFFFF);
 }

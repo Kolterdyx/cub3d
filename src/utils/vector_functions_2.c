@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_functions_3.c                               :+:      :+:    :+:   */
+/*   vector_functions_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 04:32:53 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 14:10:16 by cigarcia         ###   ########.fr       */
+/*   Created: 2022/12/09 04:33:10 by cigarcia          #+#    #+#             */
+/*   Updated: 2022/12/12 04:47:48 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_vector_empty(t_vector a)
+t_vec	vec_rotate(t_vec a, double angle)
 {
-	return (a.x == 0 && a.y == 0);
+	return ((t_vec){a.x * cos(angle) - a.y * sin(angle), a.x * sin(angle)
+														 + a.y * cos(angle)});
 }
 
-t_vector	*vector_alloc(double x, double y)
+t_vec	vec_from_rad(double angle)
 {
-	t_vector	*new;
-
-	new = ft_calloc(1, sizeof(t_vector));
-	new->x = x;
-	new->y = y;
-	return (new);
+	return ((t_vec){cos(angle), sin(angle)});
 }
 
-t_vector	*vector_copy(t_vector a)
+double	vec_rad(t_vec a)
 {
-	t_vector	*new;
+	return (atan2(a.y, a.x));
+}
 
-	new = ft_calloc(1, sizeof(t_vector));
-	new->x = a.x;
-	new->y = a.y;
-	return (new);
+double	vec_len(t_vec a)
+{
+	return (sqrt(vec_dot(a, a)));
+}
+
+double	vec_dist(t_vec a, t_vec b)
+{
+	return (vec_len(sub_vec(a, b)));
 }

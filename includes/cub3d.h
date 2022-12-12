@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 03:23:44 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 06:36:22 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define PLAYER_SPEED 0.05
 # define PLAYER_ROTATION_SPEED 0.001
 # define PLAYER_HITBOX_RADIUS 0.25
+# define PLAYER_INTERACTION_RADIUS 1
 
 /**
  * @brief 2D vector
@@ -46,7 +47,7 @@ typedef struct s_vector
 {
 	double			x;
 	double			y;
-}					t_vector;
+}					t_vec;
 
 /**
  * @brief A 2D edge (line segment) defined by two points.
@@ -58,10 +59,23 @@ typedef struct s_vector
  */
 typedef struct s_edge
 {
-	t_vector		start;
-	t_vector		end;
+	t_vec		start;
+	t_vec		end;
 	int				dir;
 }					t_edge;
+
+/**
+ * @brief A door that can be opened and closed.
+ *
+ * @param edge Edge used to collide with the player.
+ * @param open Whether the door is open or not.
+ */
+typedef struct s_door
+{
+	t_edge		edge;
+	int			dir;
+	int			open;
+}					t_door;
 
 /**
  * @brief Main structure for holding global data.
@@ -70,7 +84,7 @@ typedef struct s_edge
  * @param img The image to draw to.
  * @param floor_color The color of the floor (RGBA 32bit format).
  * @param ceiling_color The color of the ceiling (RGBA 32bit format).
- * @param edges Double linked list of edges to intersect.
+ * @param edges Double linked list of wall_edges to intersect.
  * @param player_pos The player's position as a vector.
  * @param player_angle The player's angle in radians.
  * @param rays Double linked list of vectors that will be used for ray casting.
@@ -87,14 +101,15 @@ typedef struct t_data
 
 	uint32_t		floor_color;
 	uint32_t		ceiling_color;
-	t_list			*edges;
+	t_list			*wall_edges;
+	t_list			*doors;
 
-	mlx_texture_t	**wall_textures;
-	t_vector		texture_size;
+	mlx_texture_t	**textures;
+	t_vec		texture_size;
 
-	t_vector		last_mousepos;
+	t_vec		last_mousepos;
 
-	t_vector		player_pos;
+	t_vec		player_pos;
 	double			player_angle;
 	t_list			*rays;
 }					t_data;
@@ -107,7 +122,7 @@ void				key_hook(mlx_key_data_t keydata, void *param);
  * @param b
  * @return Dot product of a and b
  */
-double				vector_dot(t_vector a, t_vector b);
+double				vec_dot(t_vec a, t_vec b);
 
 /**
  * @brief Calculate the difference of two vectors.
@@ -115,7 +130,7 @@ double				vector_dot(t_vector a, t_vector b);
  * @param b
  * @return The vector resulting from subtracting b from a
  */
-t_vector			vector_sub(t_vector a, t_vector b);
+t_vec			sub_vec(t_vec a, t_vec b);
 
 /**
  * @brief Calculate the sum of two vectors.
@@ -123,7 +138,7 @@ t_vector			vector_sub(t_vector a, t_vector b);
  * @param b
  * @return The vector resulting from adding a and b
  */
-t_vector			vector_add(t_vector a, t_vector b);
+t_vec			add_vec(t_vec a, t_vec b);
 
 /**
  * @brief Scale a vector by a scalar.
@@ -131,14 +146,14 @@ t_vector			vector_add(t_vector a, t_vector b);
  * @param b
  * @return The vector resulting from scaling a by b
  */
-t_vector			vector_scale(t_vector a, double b);
+t_vec			vec_scl(t_vec a, double b);
 
 /**
  * @brief Return the normalized vector of a.
  * @param a The vector to normalize
  * @return Unit vector of a
  */
-t_vector			vector_normalize(t_vector a);
+t_vec			vec_unit(t_vec a);
 
 /**
  * @brief Rotate a vector by an angle.
@@ -146,28 +161,28 @@ t_vector			vector_normalize(t_vector a);
  * @param angle Angle in radians
  * @return The vector resulting from rotating a by angle
  */
-t_vector			vector_rotate(t_vector a, double angle);
+t_vec			vec_rotate(t_vec a, double angle);
 
 /**
  * @brief Return a unit vector from an angle.
  * @param angle Angle in radians
  * @return The vector resulting from rotating (1, 0) by angle
  */
-t_vector			vector_from_angle(double angle);
+t_vec			vec_from_rad(double angle);
 
 /**
  * @brief Calculate the angle of a vector.
  * @param a
  * @return The angle of a in radians
  */
-double				vector_angle(t_vector a);
+double				vec_rad(t_vec a);
 
 /**
  * @brief Calculate the length of a vector.
  * @param a
  * @return The length of a
  */
-double				vector_length(t_vector a);
+double				vec_len(t_vec a);
 
 /**
  * @brief Calculate the distance between two vectors.
@@ -175,23 +190,23 @@ double				vector_length(t_vector a);
  * @param b
  * @return The distance between a and b (|a - b|)
  */
-double				vector_distance(t_vector a, t_vector b);
+double				vec_dist(t_vec a, t_vec b);
 
 /**
  * @Tell if a vector is empty.
  * @param a
  * @return Whether a is empty (a.x == 0 && a.y == 0)
  */
-int					is_vector_empty(t_vector a);
+int					is_vector_empty(t_vec a);
 
 /**
- * @brief Calculate the intersection of two edges.
+ * @brief Calculate the intersection of two wall_edges.
  * @param a
  * @param b
  * @param intersection Pointer to store the intersection point if it exists
- * @return Whether the edges intersect
+ * @return Whether the wall_edges intersect
  */
-int					edges_intersect(t_edge a, t_edge b, t_vector *intersection);
+int					edges_intersect(t_edge a, t_edge b, t_vec *intersection);
 
 /**
  * @brief Check if there is an intersection between an edge and a circle
@@ -202,16 +217,16 @@ int					edges_intersect(t_edge a, t_edge b, t_vector *intersection);
  * of the circle
  * @return Whether the edge intersects the circle
  */
-int					edge_intersects_circle(t_edge a, t_vector center,
-						double radius, t_vector *closest_point);
+int					edge_intersects_circle(t_edge a, t_vec center,
+											  double radius, t_vec *closest_point);
 
 /**
- * @brief Calculate the intersection of two edges.
+ * @brief Calculate the intersection of two wall_edges.
  * @param a
  * @param b
  * @return The intersection point if it exists, (0, 0) otherwise
  */
-t_vector			find_intersection(t_edge a, t_edge b);
+t_vec				find_intersection(t_edge a, t_edge b);
 
 /**
  * @brief Create a new vector allocated on the heap. The returned vector can be
@@ -220,7 +235,7 @@ t_vector			find_intersection(t_edge a, t_edge b);
  * @param y
  * @return Pointer to the new vector.
  */
-t_vector			*vector_alloc(double x, double y);
+t_vec				*vector_alloc(double x, double y);
 
 /**
  * @brief Create a new edge allocated on the heap. The returned edge can be
@@ -229,7 +244,7 @@ t_vector			*vector_alloc(double x, double y);
  * @param y
  * @return Pointer to the new edge.
  */
-t_edge				*edge_alloc(t_vector start, t_vector end, int dir);
+t_edge				*edge_alloc(t_vec start, t_vec end, int dir);
 
 /**
  * @brief Create a copy of a vector. Can be used to create a copy on the heap
@@ -237,7 +252,7 @@ t_edge				*edge_alloc(t_vector start, t_vector end, int dir);
  * @param a
  * @return
  */
-t_vector			*vector_copy(t_vector a);
+t_vec				*vec_cpy(t_vec a);
 
 /**
  * @brief Basic initialization of the t_data structure.
@@ -250,7 +265,7 @@ t_data				*init_data(void);
  * @param data The data structure to modify.
  * @param pos The player's position.
  */
-void				init_player(t_data *data, t_vector pos);
+void				init_player(t_data *data, t_vec pos);
 
 /**
  * @brief Create a new image from a cropped region of an existing texture.
@@ -260,7 +275,7 @@ void				init_player(t_data *data, t_vector pos);
  * @return An image of the cropped region.
  */
 mlx_image_t			*cropped_texture(mlx_t *mlx, mlx_texture_t *texture,
-						t_vector origin, t_vector size);
+										t_vec origin, t_vec size);
 
 /**
  * @brief Scales the given image by the given scale factor
@@ -271,7 +286,7 @@ mlx_image_t			*cropped_texture(mlx_t *mlx, mlx_texture_t *texture,
  * @param scale Scale vector (x for horizontal scale, y for vertical scale)
  * @return New scaled image.
  */
-mlx_image_t			*scale_image(mlx_t *mlx, mlx_image_t *img, t_vector scale);
+mlx_image_t			*scale_image(mlx_t *mlx, mlx_image_t *img, t_vec scale);
 
 /**
  * @brief Gets the color value of a given pixel from the given image
@@ -290,19 +305,19 @@ uint32_t			mlx_get_pixel(mlx_image_t *image, int x, int y);
  * @param mlx MLX instance
  * @param img MLX image to draw to
  * @param texture Texture to crop, scale and offset
- * @param area This is an array of 4 t_vector. Here is an example: @code
- * (t_vector[4]){
- *     (t_vector){0, 0},    //area origin
- *     (t_vector){32, 32},  //area size
- *     (t_vector){1, 1},    //scale vector
- *     (t_vector){10, 10}   //offset vector
+ * @param area This is an array of 4 t_vec. Here is an example: @code
+ * (t_vec[4]){
+ *     (t_vec){0, 0},    //area origin
+ *     (t_vec){32, 32},  //area size
+ *     (t_vec){1, 1},    //scale vector
+ *     (t_vec){10, 10}   //offset vector
  * }
  * @endcode
  * This is what the norme makes us do :(
  *
  */
 void				draw_texture_area_scaled(mlx_t *mlx, mlx_image_t *img,
-						mlx_texture_t *texture, t_vector *area);
+											 mlx_texture_t *texture, t_vec *area);
 
 /**
  * @brief Given a bit set, and a bit count, reverses the bits.
@@ -322,8 +337,8 @@ uint32_t			revert_bits(uint32_t set, int count);
  * @param new_range New/desired range.
  * @return Mapped value.
  */
-double				map_range(double value, t_vector old_range,
-						t_vector new_range);
+double				map_range(double value, t_vec old_range,
+								t_vec new_range);
 
 /**
  * @brief Fills and image with the given color.
@@ -368,8 +383,8 @@ void				put_pixel(mlx_image_t *img, int x, int y, uint32_t color);
  * @param radius
  * @param color
  */
-void				draw_circle(mlx_image_t *img, t_vector pos,
-						double radius, uint32_t color);
+void				draw_circle(mlx_image_t *img, t_vec pos,
+								double radius, uint32_t color);
 
 /**
  * @brief Calculate player collision with the map.
@@ -384,7 +399,7 @@ void				collisions(t_data *data);
  * @param direction Cardinal direction of the wall (0 = north, 1 = east, 2 =
  * south, 3 = west).
  */
-void				add_wall(t_data *data, t_vector pos, int direction);
+void				add_wall(t_data *data, t_vec pos, int direction);
 
 /**
  * @brief Load a map from an integer array.
@@ -393,8 +408,8 @@ void				add_wall(t_data *data, t_vector pos, int direction);
  * 2 = player)
  * @param shape
  */
-void				load_map_from_ints(t_data *data, const int *arr,
-						t_vector shape);
+void				init_map(t_data *data, const int *arr,
+							 t_vec shape);
 
 /**
  * @brief Process raycasting for all rays.
@@ -409,8 +424,8 @@ void				rays(t_data *data);
  * @param size Size of the rectangle.
  * @param color Color of the rectangle in RGBA 32 bit format.
  */
-void				draw_rectangle(mlx_image_t *img, t_vector pos,
-						t_vector size, uint32_t color);
+void				draw_rectangle(mlx_image_t *img, t_vec pos,
+								   t_vec size, uint32_t color);
 
 /**
  * @brief Get the velocity vector of the player based on a relative angle.
@@ -418,8 +433,15 @@ void				draw_rectangle(mlx_image_t *img, t_vector pos,
  * @param angle Relative angle in radians.
  * @return Velocity vector.
  */
-t_vector			speed_at_relative_angle(t_data *data, double angle);
+t_vec				speed_at_relative_angle(t_data *data, double angle);
 
 void				cursor_hook(double x, double y, void *vdata);
+int					arr_index(t_vec pos, const int *arr, int width, int default_value);
+void				init_door(t_data *data, t_vec pos, t_vec shape, const int *arr);
+void				init_sprite(t_data *data, t_vec pos);
+void				mouse_hook(mouse_key_t key, action_t action, modifier_key_t mod, void *vdata);
+void				render_ray(t_data *data, int dir, t_vec inter, int ray_index);
+void				render_wall(t_data *data, t_edge rect, t_vec hit_pos);
+t_vec				wall_pos(t_vec pos, int dir);
 
 #endif //CUB3D_H

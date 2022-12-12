@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:45 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 16:44:44 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 06:24:08 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,27 @@ void	cursor_hook(double x, double y, void *vdata)
 	data = vdata;
 	if (!is_vector_empty(data->last_mousepos))
 		data->player_angle += (x - data->last_mousepos.x) * PLAYER_ROTATION_SPEED;
-	data->last_mousepos = (t_vector){x, y};
+	data->last_mousepos = (t_vec){x, y};
+}
+
+void	mouse_hook(mouse_key_t key, action_t action, modifier_key_t mod, void *vdata)
+{
+	t_data		*data;
+	t_door		*door;
+	t_list		*node;
+	t_vec		point;
+
+	data = vdata;
+	(void)mod;
+	if (!(key == MLX_MOUSE_BUTTON_RIGHT && action == MLX_PRESS))
+		return ;
+	node = data->doors;
+	while (node)
+	{
+		door = ((t_door *)node->content);
+		if (edge_intersects_circle(door->edge, data->player_pos,
+			PLAYER_INTERACTION_RADIUS * TILE_SIZE, &point))
+			door->open = !door->open;
+		node = node->next;
+	}
 }

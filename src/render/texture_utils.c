@@ -6,14 +6,14 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:08:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 03:06:09 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 03:06:23 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 mlx_image_t	*cropped_texture(mlx_t *mlx, mlx_texture_t *texture,
-		t_vector origin, t_vector size)
+								t_vec origin, t_vec size)
 {
 	mlx_image_t	*cropped;
 	uint32_t	xy[3];
@@ -48,7 +48,7 @@ uint32_t	mlx_get_pixel(mlx_image_t *image, int x, int y)
 	return (color);
 }
 
-mlx_image_t	*scale_image(mlx_t *mlx, mlx_image_t *img, t_vector scale)
+mlx_image_t	*scale_image(mlx_t *mlx, mlx_image_t *img, t_vec scale)
 {
 	uint32_t	x;
 	uint32_t	y;
@@ -64,11 +64,11 @@ mlx_image_t	*scale_image(mlx_t *mlx, mlx_image_t *img, t_vector scale)
 		{
 			color = mlx_get_pixel(img,
 					floor(map_range(x,
-							(t_vector){0, new->width},
-							(t_vector){0, img->width})),
+							(t_vec){0, new->width},
+							(t_vec){0, img->width})),
 					floor(map_range(y,
-							(t_vector){0, new->height},
-							(t_vector){0, img->height})));
+							(t_vec){0, new->height},
+							(t_vec){0, img->height})));
 			put_pixel(new, x, y, color);
 			x++;
 		}
@@ -78,7 +78,7 @@ mlx_image_t	*scale_image(mlx_t *mlx, mlx_image_t *img, t_vector scale)
 }
 
 void	draw_texture_area_scaled(mlx_t *mlx, mlx_image_t *img,
-		mlx_texture_t *texture, t_vector *area)
+								 mlx_texture_t *texture, t_vec *area)
 {
 	mlx_image_t	*temp;
 	mlx_image_t	*temp2;
