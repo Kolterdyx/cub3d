@@ -6,11 +6,28 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:45 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 06:51:14 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 06:58:09 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	open_door(t_data *data)
+{
+	t_door	*door;
+	t_list	*node;
+	t_vec	point;
+
+	node = data->doors;
+	while (node)
+	{
+		door = ((t_door *)node->content);
+		if (edge_intersects_circle(door->edge, data->player_pos,
+				PLAYER_INTERACTION_RADIUS * TILE_SIZE, &point))
+			door->open = !door->open;
+		node = node->next;
+	}
+}
 
 void	key_hook(mlx_key_data_t keydata, void *param)
 {
@@ -19,6 +36,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	data = (t_data *)param;
 	if (keydata.key == MLX_KEY_ESCAPE)
 		mlx_close_window(data->mlx);
+	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
+		open_door(data);
 }
 
 void	cursor_hook(double x, double y, void *vdata)
@@ -36,21 +55,10 @@ void	mouse_hook(mouse_key_t key, action_t action, modifier_key_t mod,
 		void *vdata)
 {
 	t_data	*data;
-	t_door	*door;
-	t_list	*node;
-	t_vec	point;
 
 	data = vdata;
 	(void)mod;
 	if (!(key == MLX_MOUSE_BUTTON_RIGHT && action == MLX_PRESS))
 		return ;
-	node = data->doors;
-	while (node)
-	{
-		door = ((t_door *)node->content);
-		if (edge_intersects_circle(door->edge, data->player_pos,
-				PLAYER_INTERACTION_RADIUS * TILE_SIZE, &point))
-			door->open = !door->open;
-		node = node->next;
-	}
+	open_door(data);
 }
