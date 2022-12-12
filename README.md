@@ -118,6 +118,7 @@ Here is an example of a valid map:
 
 ```
 NO  ./assets/north_test.png
+
 SO ./assets/south_test.png
 WE    ./assets/west_test.png
 
@@ -150,3 +151,14 @@ C  225,30,0
 11110111 1110101 101111010001
 11111111 1111111 111111111111
 ```
+
+# Textures
+
+Textures are stored in a `mlx_texture_t *` array (`t_data.textures`). The position of these textures in the array is important, as they are used to determine which texture to use when rendering a wall. The order of the textures in the array is as follows:
+
+- North texture (NO) - `t_data.textures[0]`
+- West texture (WE)  - `t_data.textures[1]`
+- South texture (SO) - `t_data.textures[2]`
+- East texture (EA)  - `t_data.textures[3]`
+- Door texture       - `t_data.textures[4]`
+- `undefined beyond here`
