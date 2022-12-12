@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:06:30 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 06:46:17 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 07:54:37 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ void	render_wall(t_data *data, t_edge rect, t_vec hit_pos)
 	double	wall_height;
 
 	ratio = data->texture_size.x / TILE_SIZE;
-	wall_height = 80 * ratio * rect.end.y;
+	wall_height = 80 * pow(32. / data->texture_size.x, 2) * ratio * rect.end.y;
 	draw_texture_area_scaled(data->mlx, data->img, data->textures[rect.dir],
-		(t_vec[4]){(t_vec){hit_pos.x * ratio, 0}, (t_vec){rect.end.x
-		* ratio, data->texture_size.y}, (t_vec){1, wall_height},
+		(t_vec[4]){(t_vec){hit_pos.x * ratio, 0}, (t_vec){fmax(rect.end.x
+			* ratio, 1.), fmax(data->texture_size.y, 1.)},
+		(t_vec){1, wall_height},
 		add_vec(rect.start, (t_vec){0, -wall_height * data->texture_size.x
 			/ 2})});
 	(void)hit_pos;

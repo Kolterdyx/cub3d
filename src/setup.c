@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:55:23 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 06:52:00 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:18:24 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_player(t_data *data, t_vec pos)
 	data->player_pos = add_vec(vec_scl(pos, TILE_SIZE),
 			vec_scl((t_vec){PLAYER_HITBOX_RADIUS, PLAYER_HITBOX_RADIUS},
 				TILE_SIZE));
-	data->player_angle = M_PI_2 + M_PI / 8;
+	data->player_angle = (FOV / 2) * M_PI / 180 + M_PI_2;
 	while (i < RAYS)
 	{
 		radians = data->player_angle + ((i * FOV / RAYS) * M_PI / 180);
@@ -34,11 +34,11 @@ void	init_player(t_data *data, t_vec pos)
 void	load_textures(t_data *data)
 {
 	data->textures = ft_calloc(6, sizeof(mlx_texture_t *));
-	data->textures[0] = mlx_load_png("assets/north_test.png");
-	data->textures[1] = mlx_load_png("assets/east_test.png");
-	data->textures[2] = mlx_load_png("assets/south_test.png");
-	data->textures[3] = mlx_load_png("assets/west_test.png");
-	data->textures[4] = mlx_load_png("assets/door_test.png");
+	data->textures[0] = mlx_load_png("assets/test/north.png");
+	data->textures[1] = mlx_load_png("assets/test/east.png");
+	data->textures[2] = mlx_load_png("assets/test/south.png");
+	data->textures[3] = mlx_load_png("assets/test/west.png");
+	data->textures[4] = mlx_load_png("assets/test/door.png");
 	data->texture_size.x = data->textures[0]->width;
 	data->texture_size.y = data->textures[0]->height;
 }

@@ -12,10 +12,9 @@
 
 #include "cub3d.h"
 
-void	init_sprite(t_data *data, t_vec pos)
+void init_sprite(t_data *data)
 {
 	(void)data;
-	(void)pos;
 }
 
 t_door	*door_alloc(t_vec pos, int dir)

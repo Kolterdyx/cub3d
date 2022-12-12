@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 06:51:31 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:34:04 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ void	ft_exit(t_data *data, int code)
 	mlx_delete_texture(data->textures[1]);
 	mlx_delete_texture(data->textures[2]);
 	mlx_delete_texture(data->textures[3]);
+	mlx_delete_texture(data->textures[4]);
 	free(data->textures);
 	ft_lstclear(&data->wall_edges, free);
 	ft_lstclear(&data->rays, free);
+	ft_lstclear(&data->doors, free);
 	free(data);
 	exit(code);
 }
@@ -62,14 +64,14 @@ int	main(void)
 	init_map(data, (int [(12 * 12)]){
 		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1,
-		1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1,
+		1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
 		1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1,
-		1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 4, 1,
+		1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 4, 1,
 		1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1,
-		1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1,
+		1, 0, 2, 4, 0, 0, 0, 1, 1, 1, 0, 1,
 		1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1,
-		1, 0, 0, 1, 1, 0, 0, 0, 4, 2, 0, 1,
-		1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1,
+		1, 0, 0, 1, 1, 0, 0, 0, 4, 0, 0, 1,
+		1, 0, 0, 0, 0, 0, 2, 0, 1, 0, 1, 1,
 		1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 	}, (t_vec){12, 12});

@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 06:52:27 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:43:45 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,13 @@
 # define TILE_SIZE 20.
 
 // These values here are a proportion of the minimap scale
-# define PLAYER_SPEED 0.05
+# define PLAYER_SPEED 0.075
 # define PLAYER_ROTATION_SPEED 0.001
 # define PLAYER_HITBOX_RADIUS 0.25
-# define PLAYER_INTERACTION_RADIUS 1
+# define PLAYER_INTERACTION_RADIUS 1.25
 
 /**
  * @brief 2D vector
- *
  */
 typedef struct s_vector
 {
@@ -433,17 +432,77 @@ void				draw_rectangle(mlx_image_t *img, t_vec pos, t_vec size,
  */
 t_vec				speed_at_relative_angle(t_data *data, double angle);
 
+/**
+ * Cursor hook
+ * @param x
+ * @param y
+ * @param vdata
+ */
 void				cursor_hook(double x, double y, void *vdata);
+
+/**
+ * Returns a value from a 1D integer array given a 2D position.
+ * @param pos 2D position.
+ * @param arr Integer array.
+ * @param width width of the matrix.
+ * @param default_value default value to return if something went wrong.
+ * @return
+ */
 int					arr_index(t_vec pos, const int *arr, int width,
 						int default_value);
+
+/**
+ * Initialize door.
+ * @param data
+ * @param pos Position of the door.
+ * @param shape Shape of the map.
+ * @param arr Integer array representation of the map.
+ */
 void				init_door(t_data *data, t_vec pos, t_vec shape,
 						const int *arr);
-void				init_sprite(t_data *data, t_vec pos);
+
+/**
+ * Initialize sprite
+ * @param data
+ */
+void				init_sprite(t_data *data);
+
+/**
+ * Mouse hook
+ * @param key
+ * @param action
+ * @param mod
+ * @param vdata
+ */
 void				mouse_hook(mouse_key_t key, action_t action,
 						modifier_key_t mod, void *vdata);
+
+/**
+ * Render images based on ray casts.
+ * @param data
+ * @param dir Direction of the intersection
+ * @param inter Position of the intersection
+ * @param ray_index Index of the ray
+ */
 void				render_ray(t_data *data, int dir, t_vec inter,
 						int ray_index);
+
+/**
+ * Draw the wall section corresponding to hit_pos
+ * @param data
+ * @param rect rect.start is the position on the texture. rect.end
+ * is the area of the texture
+ * @param hit_pos Hit position of the ray normalized to [0, TILE_SIZE)
+ */
 void				render_wall(t_data *data, t_edge rect, t_vec hit_pos);
+
+/**
+ * Given a coordinate vector and a direction, get the texture position at which
+ * the ray landed.
+ * @param pos Coordinate vector
+ * @param dir Direction (0 = North, 1 = East, 2 = South, 3 = West)
+ * @return
+ */
 t_vec				wall_pos(t_vec pos, int dir);
 
 #endif //CUB3D_H
