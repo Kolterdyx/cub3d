@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wall_edges.c                                            :+:      :+:    :+:   */
+/*   edges.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 04:32:59 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 04:47:48 by cigarcia         ###   ########.fr       */
+/*   Created: 2022/12/12 06:55:23 by cigarcia          #+#    #+#             */
+/*   Updated: 2022/12/12 06:55:32 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	edges_intersect(t_edge a, t_edge b, t_vec *intersection)
 }
 
 int	edge_intersects_circle(t_edge a, t_vec center, double radius,
-							  t_vec *closest_point)
+		t_vec *closest_point)
 {
 	t_vec	abc[2];
-	double		ab2;
-	double		t;
+	double	ab2;
+	double	t;
 	t_vec	closest;
 
 	abc[0] = sub_vec(a.end, a.start);

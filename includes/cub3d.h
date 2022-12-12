@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 06:36:22 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 06:52:27 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ typedef struct s_vector
  */
 typedef struct s_edge
 {
-	t_vec		start;
-	t_vec		end;
+	t_vec			start;
+	t_vec			end;
 	int				dir;
 }					t_edge;
 
@@ -72,9 +72,9 @@ typedef struct s_edge
  */
 typedef struct s_door
 {
-	t_edge		edge;
-	int			dir;
-	int			open;
+	t_edge			edge;
+	int				dir;
+	int				open;
 }					t_door;
 
 /**
@@ -105,11 +105,11 @@ typedef struct t_data
 	t_list			*doors;
 
 	mlx_texture_t	**textures;
-	t_vec		texture_size;
+	t_vec			texture_size;
 
-	t_vec		last_mousepos;
+	t_vec			last_mousepos;
 
-	t_vec		player_pos;
+	t_vec			player_pos;
 	double			player_angle;
 	t_list			*rays;
 }					t_data;
@@ -130,7 +130,7 @@ double				vec_dot(t_vec a, t_vec b);
  * @param b
  * @return The vector resulting from subtracting b from a
  */
-t_vec			sub_vec(t_vec a, t_vec b);
+t_vec				sub_vec(t_vec a, t_vec b);
 
 /**
  * @brief Calculate the sum of two vectors.
@@ -138,7 +138,7 @@ t_vec			sub_vec(t_vec a, t_vec b);
  * @param b
  * @return The vector resulting from adding a and b
  */
-t_vec			add_vec(t_vec a, t_vec b);
+t_vec				add_vec(t_vec a, t_vec b);
 
 /**
  * @brief Scale a vector by a scalar.
@@ -146,14 +146,14 @@ t_vec			add_vec(t_vec a, t_vec b);
  * @param b
  * @return The vector resulting from scaling a by b
  */
-t_vec			vec_scl(t_vec a, double b);
+t_vec				vec_scl(t_vec a, double b);
 
 /**
  * @brief Return the normalized vector of a.
  * @param a The vector to normalize
  * @return Unit vector of a
  */
-t_vec			vec_unit(t_vec a);
+t_vec				vec_unit(t_vec a);
 
 /**
  * @brief Rotate a vector by an angle.
@@ -161,14 +161,14 @@ t_vec			vec_unit(t_vec a);
  * @param angle Angle in radians
  * @return The vector resulting from rotating a by angle
  */
-t_vec			vec_rotate(t_vec a, double angle);
+t_vec				vec_rotate(t_vec a, double angle);
 
 /**
  * @brief Return a unit vector from an angle.
  * @param angle Angle in radians
  * @return The vector resulting from rotating (1, 0) by angle
  */
-t_vec			vec_from_rad(double angle);
+t_vec				vec_from_rad(double angle);
 
 /**
  * @brief Calculate the angle of a vector.
@@ -218,7 +218,7 @@ int					edges_intersect(t_edge a, t_edge b, t_vec *intersection);
  * @return Whether the edge intersects the circle
  */
 int					edge_intersects_circle(t_edge a, t_vec center,
-											  double radius, t_vec *closest_point);
+						double radius, t_vec *closest_point);
 
 /**
  * @brief Calculate the intersection of two wall_edges.
@@ -275,7 +275,7 @@ void				init_player(t_data *data, t_vec pos);
  * @return An image of the cropped region.
  */
 mlx_image_t			*cropped_texture(mlx_t *mlx, mlx_texture_t *texture,
-										t_vec origin, t_vec size);
+						t_vec origin, t_vec size);
 
 /**
  * @brief Scales the given image by the given scale factor
@@ -317,7 +317,7 @@ uint32_t			mlx_get_pixel(mlx_image_t *image, int x, int y);
  *
  */
 void				draw_texture_area_scaled(mlx_t *mlx, mlx_image_t *img,
-											 mlx_texture_t *texture, t_vec *area);
+						mlx_texture_t *texture, t_vec *area);
 
 /**
  * @brief Given a bit set, and a bit count, reverses the bits.
@@ -337,8 +337,7 @@ uint32_t			revert_bits(uint32_t set, int count);
  * @param new_range New/desired range.
  * @return Mapped value.
  */
-double				map_range(double value, t_vec old_range,
-								t_vec new_range);
+double				map_range(double value, t_vec old_range, t_vec new_range);
 
 /**
  * @brief Fills and image with the given color.
@@ -383,8 +382,8 @@ void				put_pixel(mlx_image_t *img, int x, int y, uint32_t color);
  * @param radius
  * @param color
  */
-void				draw_circle(mlx_image_t *img, t_vec pos,
-								double radius, uint32_t color);
+void				draw_circle(mlx_image_t *img, t_vec pos, double radius,
+						uint32_t color);
 
 /**
  * @brief Calculate player collision with the map.
@@ -408,8 +407,7 @@ void				add_wall(t_data *data, t_vec pos, int direction);
  * 2 = player)
  * @param shape
  */
-void				init_map(t_data *data, const int *arr,
-							 t_vec shape);
+void				init_map(t_data *data, const int *arr, t_vec shape);
 
 /**
  * @brief Process raycasting for all rays.
@@ -424,8 +422,8 @@ void				rays(t_data *data);
  * @param size Size of the rectangle.
  * @param color Color of the rectangle in RGBA 32 bit format.
  */
-void				draw_rectangle(mlx_image_t *img, t_vec pos,
-								   t_vec size, uint32_t color);
+void				draw_rectangle(mlx_image_t *img, t_vec pos, t_vec size,
+						uint32_t color);
 
 /**
  * @brief Get the velocity vector of the player based on a relative angle.
@@ -436,11 +434,15 @@ void				draw_rectangle(mlx_image_t *img, t_vec pos,
 t_vec				speed_at_relative_angle(t_data *data, double angle);
 
 void				cursor_hook(double x, double y, void *vdata);
-int					arr_index(t_vec pos, const int *arr, int width, int default_value);
-void				init_door(t_data *data, t_vec pos, t_vec shape, const int *arr);
+int					arr_index(t_vec pos, const int *arr, int width,
+						int default_value);
+void				init_door(t_data *data, t_vec pos, t_vec shape,
+						const int *arr);
 void				init_sprite(t_data *data, t_vec pos);
-void				mouse_hook(mouse_key_t key, action_t action, modifier_key_t mod, void *vdata);
-void				render_ray(t_data *data, int dir, t_vec inter, int ray_index);
+void				mouse_hook(mouse_key_t key, action_t action,
+						modifier_key_t mod, void *vdata);
+void				render_ray(t_data *data, int dir, t_vec inter,
+						int ray_index);
 void				render_wall(t_data *data, t_edge rect, t_vec hit_pos);
 t_vec				wall_pos(t_vec pos, int dir);
 

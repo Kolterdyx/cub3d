@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   level.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:08:50 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 04:49:28 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 06:49:17 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_edge	*make_wall_edge(t_vec a, t_vec b, int dir)
 {
 	return (edge_alloc(vec_scl(a, TILE_SIZE),
-					   vec_scl(b, TILE_SIZE), dir));
+			vec_scl(b, TILE_SIZE), dir));
 }
 
 void	add_wall(t_data *data, t_vec pos, int direction)
@@ -24,16 +24,16 @@ void	add_wall(t_data *data, t_vec pos, int direction)
 
 	if (direction == 0)
 		edge = make_wall_edge((t_vec){pos.x, pos.y},
-							  (t_vec){pos.x + 1, pos.y}, direction);
+				(t_vec){pos.x + 1, pos.y}, direction);
 	else if (direction == 1)
 		edge = make_wall_edge((t_vec){pos.x + 1, pos.y},
-							  (t_vec){pos.x + 1, pos.y + 1}, direction);
+				(t_vec){pos.x + 1, pos.y + 1}, direction);
 	else if (direction == 2)
 		edge = make_wall_edge((t_vec){pos.x, pos.y + 1},
-							  (t_vec){pos.x + 1, pos.y + 1}, direction);
+				(t_vec){pos.x + 1, pos.y + 1}, direction);
 	else if (direction == 3)
 		edge = make_wall_edge((t_vec){pos.x, pos.y},
-							  (t_vec){pos.x, pos.y + 1}, direction);
+				(t_vec){pos.x, pos.y + 1}, direction);
 	else
 		return ;
 	ft_lstadd_back(&data->wall_edges, ft_lstnew(edge));

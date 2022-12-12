@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:33:10 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 04:47:48 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 06:43:07 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_vec	vec_rotate(t_vec a, double angle)
 {
 	return ((t_vec){a.x * cos(angle) - a.y * sin(angle), a.x * sin(angle)
-														 + a.y * cos(angle)});
+		+ a.y * cos(angle)});
 }
 
 t_vec	vec_from_rad(double angle)

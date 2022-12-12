@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:59:40 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 06:17:28 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 06:41:20 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ t_vec	wall_pos(t_vec pos, int dir)
 
 void	door_cast(t_data *data, t_edge *ray_edge, t_vec *inter, int *dir)
 {
-	t_list		*door_node;
-	t_door		door;
+	t_list	*door_node;
+	t_door	door;
 
 	door_node = data->doors;
 	while (door_node)
 	{
 		door = *(t_door *)door_node->content;
 		if (!door.open && edges_intersect(*ray_edge, door.edge, inter)
-			&& (vec_dist(*inter, data->player_pos)
-				< vec_dist(ray_edge->end, data->player_pos)))
+			&& (vec_dist(*inter, data->player_pos) < vec_dist(ray_edge->end,
+					data->player_pos)))
 		{
 			*dir = 4;
 			ray_edge->end = *inter;
@@ -67,18 +67,18 @@ void	door_cast(t_data *data, t_edge *ray_edge, t_vec *inter, int *dir)
 
 void	cast_and_draw_ray(t_data *data, t_edge ray_edge, int ray_index)
 {
-	t_list		*edge_node;
-	t_edge		edge;
-	t_vec		inter;
-	int			dir;
+	t_list	*edge_node;
+	t_edge	edge;
+	t_vec	inter;
+	int		dir;
 
 	edge_node = data->wall_edges;
 	while (edge_node)
 	{
 		edge = *(t_edge *)edge_node->content;
-		if (edges_intersect(ray_edge, edge, &inter)
-			&& (vec_dist(inter, data->player_pos)
-				< vec_dist(ray_edge.end, data->player_pos)))
+		if (edges_intersect(ray_edge, edge, &inter) && (vec_dist(inter,
+					data->player_pos) < vec_dist(ray_edge.end,
+					data->player_pos)))
 		{
 			ray_edge.end = inter;
 			dir = edge.dir;
@@ -92,10 +92,10 @@ void	cast_and_draw_ray(t_data *data, t_edge ray_edge, int ray_index)
 
 void	rays(t_data *data)
 {
-	t_edge		ray_edge;
-	t_vec		ray_vec;
-	t_list		*ray_node;
-	int			ray_index;
+	t_edge	ray_edge;
+	t_vec	ray_vec;
+	t_list	*ray_node;
+	int		ray_index;
 
 	ray_node = data->rays;
 	ray_index = 0;
@@ -103,12 +103,8 @@ void	rays(t_data *data)
 	{
 		ray_vec = *((t_vec *)ray_node->content);
 		ray_edge = (t_edge){data->player_pos, add_vec(data->player_pos,
-													  vec_rotate(vec_scl(
-																		 ray_vec,
-																		 RAY_LENGTH
-																		 *
-																		 TILE_SIZE),
-																 data->player_angle)), 0};
+				vec_rotate(vec_scl(ray_vec, RAY_LENGTH * TILE_SIZE),
+					data->player_angle)), 0};
 		cast_and_draw_ray(data, ray_edge, ray_index);
 		ray_node = ray_node->next;
 		ray_index++;

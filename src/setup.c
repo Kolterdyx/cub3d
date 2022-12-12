@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:55:23 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 06:04:21 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 06:52:00 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ void	init_player(t_data *data, t_vec pos)
 
 	i = 0;
 	data->player_pos = add_vec(vec_scl(pos, TILE_SIZE),
-							   vec_scl((t_vec) {PLAYER_HITBOX_RADIUS,
-												PLAYER_HITBOX_RADIUS},
-									   TILE_SIZE));
+			vec_scl((t_vec){PLAYER_HITBOX_RADIUS, PLAYER_HITBOX_RADIUS},
+				TILE_SIZE));
 	data->player_angle = M_PI_2 + M_PI / 8;
 	while (i < RAYS)
 	{

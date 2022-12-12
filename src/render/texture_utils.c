@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:08:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 03:06:23 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 06:45:36 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ mlx_image_t	*scale_image(mlx_t *mlx, mlx_image_t *img, t_vec scale)
 }
 
 void	draw_texture_area_scaled(mlx_t *mlx, mlx_image_t *img,
-								 mlx_texture_t *texture, t_vec *area)
+		mlx_texture_t *texture, t_vec *area)
 {
 	mlx_image_t	*temp;
 	mlx_image_t	*temp2;
@@ -94,7 +94,8 @@ void	draw_texture_area_scaled(mlx_t *mlx, mlx_image_t *img,
 		x = 0;
 		while (x < (int)temp2->width)
 		{
-			put_pixel(img, x + area[3].x, y + area[3].y, mlx_get_pixel(temp2, x, y));
+			put_pixel(img, x + area[3].x, y + area[3].y,
+				mlx_get_pixel(temp2, x, y));
 			x++;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 06:05:36 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 06:51:31 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	main(void)
 		1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1,
 		1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	}, (t_vec) {12, 12});
+	}, (t_vec){12, 12});
 	mlx_loop_hook(data->mlx, loop, data);
 	mlx_key_hook(data->mlx, key_hook, data);
 	mlx_cursor_hook(data->mlx, cursor_hook, data);
