@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 14:43:45 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:53:31 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -403,7 +403,8 @@ void				add_wall(t_data *data, t_vec pos, int direction);
  * @brief Load a map from an integer array.
  * @param data
  * @param arr Integer array containing the map. (0 = empty, 1 = wall,
- * 2 = player)
+ * 2 = player, 3 = sprite, 4 = door (should only have two walls
+ * around it on opposite sides))
  * @param shape
  */
 void				init_map(t_data *data, const int *arr, t_vec shape);
