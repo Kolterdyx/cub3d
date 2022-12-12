@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 15:03:18 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 16:44:01 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@
 
 # define MINIMAP_WIDTH 600
 # define MINIMAP_HEIGHT 600
-# define MINIMAP_SCALE 20
+# define MINIMAP_SCALE 40
 
 // These values here are a proportion of the minimap scale
 # define PLAYER_SPEED 0.05
-# define PLAYER_ROTATION_SPEED 0.1
+# define PLAYER_ROTATION_SPEED 0.001
 # define PLAYER_HITBOX_RADIUS 0.25
 
 /**
@@ -91,6 +91,8 @@ typedef struct t_data
 	mlx_texture_t	*wall_south;
 	mlx_texture_t	*wall_east;
 	mlx_texture_t	*wall_west;
+
+	t_vector		last_mousepos;
 
 	t_vector		player_pos;
 	double			player_angle;
@@ -417,5 +419,7 @@ void				draw_rectangle(mlx_image_t *img, t_vector pos,
  * @return Velocity vector.
  */
 t_vector			speed_at_relative_angle(t_data *data, double angle);
+
+void				cursor_hook(double x, double y, void *vdata);
 
 #endif //CUB3D_H

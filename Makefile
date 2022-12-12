@@ -17,7 +17,7 @@ SRC_FILES = main.c \
 			parser/parser.c \
 			setup.c \
 			render/render.c \
-			render/minimap/minimap.c \
+			render/minimap.c \
 			render/lines.c \
 			render/rays.c \
 			render/texture_utils.c \

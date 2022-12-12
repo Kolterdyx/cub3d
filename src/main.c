@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/11 14:49:22 by cigarcia         ###   ########.fr       */
+/*   Updated: 2022/12/11 16:41:02 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ void	update(t_data *data)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 		vel = speed_at_relative_angle(data, M_PI_2);
 	data->player_pos = vector_add(data->player_pos, vel);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		data->player_angle -= PLAYER_ROTATION_SPEED;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-		data->player_angle += PLAYER_ROTATION_SPEED;
 	collisions(data);
 }
 
@@ -63,6 +59,7 @@ int	main(void)
 	}, (t_vector){12, 12});
 	mlx_loop_hook(data->mlx, loop, data);
 	mlx_key_hook(data->mlx, key_hook, data);
+	mlx_cursor_hook(data->mlx, cursor_hook, data);
 	mlx_loop(data->mlx);
 	ft_lstclear(&data->edges, free);
 	mlx_terminate(data->mlx);
