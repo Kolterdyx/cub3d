@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:43:16 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 06:43:04 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:16:24 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,16 @@ void	mlx_fill_image(mlx_image_t *img, uint32_t color)
 uint32_t	rgb_to_int(int r, int g, int b)
 {
 	return ((r << 24) | (g << 16) | (b << 8) | 0xFF);
+}
+
+t_list	*ft_lsti(t_list *lst, int index)
+{
+	int	i;
+
+	i = 0;
+	while (i < index) {
+		lst = lst->next;
+		i++;
+	}
+	return (lst);
 }

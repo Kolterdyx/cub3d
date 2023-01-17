@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:08:50 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 06:49:17 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:39:03 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ void	init_map(t_data *data, const int *arr, t_vec shape)
 {
 	int	x;
 	int	y;
+	int	p_exists;
 
+	p_exists = 0;
 	y = -1;
 	while (++y < shape.y)
 	{
@@ -64,8 +66,11 @@ void	init_map(t_data *data, const int *arr, t_vec shape)
 		{
 			if (arr[(int)(y * shape.x + x)] == 1)
 				wall_case(data, (t_vec){x, y}, shape, arr);
-			if (arr[(int)(y * shape.x + x)] == 2)
-				init_player(data, (t_vec){x, y});
+			if (arr[(int)(y * shape.x + x)] == 2 && !p_exists)
+			{
+				p_exists = 1;
+				init_player(data, (t_vec) {x, y});
+			}
 			if (arr[(int)(y * shape.x + x)] == 3)
 				init_sprite(data);
 			if (arr[(int)(y * shape.x + x)] == 4)

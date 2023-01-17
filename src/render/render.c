@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:06:30 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/01/17 07:54:37 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:40:44 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ void	render_ray(t_data *data, int dir, t_vec inter, int ray_index)
 {
 	double	dist;
 	t_vec	size;
+	double	ray_angle;
 
-	dist = vec_dist(data->player_pos, inter);
+	ray_angle = ((ray_index * FOV / RAYS) * M_PI / 180);
+	dist = vec_dist(data->player_pos, inter) * cos(ray_angle - ((FOV / 2) * M_PI / 180));
+	printf("cos: %f, ray_angle: %f\n", cos(ray_angle), ray_angle * 180 / M_PI);
 	size.y = (1. / (dist / 4));
 	if (size.y > HEIGHT)
 		size.y = HEIGHT;

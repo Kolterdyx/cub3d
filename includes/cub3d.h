@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/01/17 17:35:20 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:16:40 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define HEIGHT 540.
 
 # define FOV 60.
-# define RAYS 1000.
+# define RAYS 960.
 // Length in map units (1 * TILE_SIZE) of a ray
 # define RAY_LENGTH 20.
 
@@ -515,5 +515,7 @@ t_vec				wall_pos(t_vec pos, int dir);
  * @return Color in RGBA 32 bit format.
  */
 uint32_t			rgb_to_int(int r, int g, int b);
+
+t_list				*ft_lsti(t_list *lst, int index);
 
 #endif //CUB3D_H
