@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/01/17 21:03:55 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/01/17 21:12:18 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int argc, char **argv)
 //		1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0,
 //		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0
 //	};
-	parser(argc, argv, &map_arr, dimensions)
+	parser(argc, argv, &map_arr, &dimensions);
 	init_map(data, map_arr, dimensions);
 	mlx_loop_hook(data->mlx, loop, data);
 	mlx_key_hook(data->mlx, key_hook, data);
