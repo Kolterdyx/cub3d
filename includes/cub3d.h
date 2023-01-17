@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/01/17 20:38:17 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/01/17 20:50:23 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -515,6 +515,16 @@ t_vec				wall_pos(t_vec pos, int dir);
  * @return Color in RGBA 32 bit format.
  */
 uint32_t			rgb_to_int(int r, int g, int b);
+
+/**
+ * @brief Parse a map file.
+ * @param argc Number of arguments
+ * @param argv Arguments
+ * @param map_arr Map contents array
+ * @param dimensions Map dimensions
+ * @return Boolean, whether the map was successfully parsed or not.
+ */
+int					parser(int argc, char **argv, int *map_arr, t_vec *dimensions);
 
 t_list				*ft_lsti(t_list *lst, int index);
 
