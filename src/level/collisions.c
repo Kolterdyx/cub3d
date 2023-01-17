@@ -42,8 +42,8 @@ void	door_collisions(t_data *data, t_list *node)
 	while (node)
 	{
 		door = *((t_door *)node->content);
-		if (edge_intersects_circle(door.edge, data->player_pos,
-				PLAYER_HITBOX_RADIUS * TILE_SIZE, &point) && !door.open)
+		if (!door.open && edge_intersects_circle(door.edge, data->player_pos,
+				PLAYER_HITBOX_RADIUS * TILE_SIZE, &point))
 		{
 			dist = PLAYER_HITBOX_RADIUS * TILE_SIZE - vec_len(sub_vec(point,
 						data->player_pos));

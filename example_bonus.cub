@@ -1,7 +1,9 @@
-NO ./assets/north_test.png
-SO ./assets/south_test.png
-WE ./assets/west_test.png
-EA ./assets/east_test.png
+NO ./assets/test/north_test.png
+SO ./assets/test/south_test.png
+WE ./assets/test/west_test.png
+EA ./assets/test/east_test.png
+D ./assets/test/door.png
+SP ./assets/test/sprite.png
 
 F 220,100,0
 C 225,30,0

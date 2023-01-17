@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 20:12:19 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 06:47:32 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/01/17 20:58:03 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	draw_circle(mlx_image_t *img, t_vec pos, double radius, uint32_t color)
 	{
 		p = vec_scl(vec_from_rad(i), radius);
 		put_pixel(img, pos.x + p.x, pos.y + p.y, color);
-		i += 0.1;
+		i += 0.01;
 	}
 }
 
