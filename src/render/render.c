@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:06:30 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 07:54:37 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/01/17 07:54:37 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	render(t_data *data)
 		data->ceiling_color);
 	draw_rectangle(data->img, (t_vec){0, HEIGHT / 2}, (t_vec){WIDTH, HEIGHT
 		/ 2}, data->floor_color);
-	draw_minimap(data);
+	draw_calls(data);
 }
 
 void	render_wall(t_data *data, t_edge rect, t_vec hit_pos)

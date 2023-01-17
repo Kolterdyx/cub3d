@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 14:53:31 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:35:20 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define HEIGHT 540.
 
 # define FOV 60.
-# define RAYS 1500.
+# define RAYS 1000.
 // Length in map units (1 * TILE_SIZE) of a ray
 # define RAY_LENGTH 20.
 
@@ -87,8 +87,8 @@ typedef struct s_door
  * @param player_pos The player's position as a vector.
  * @param player_angle The player's angle in radians.
  * @param rays Double linked list of vectors that will be used for ray casting.
- * @param wall_textures Array of wall textures. (0 = North, 1 = East, 2 = South,
- * 3 = West).
+ * @param wall_textures Array of wall textures. Also includes the door because
+ * it's easier that way. (0 = North, 1 = East, 2 = South, 3 = West, 4 = Door).
  *
  */
 typedef struct t_data
@@ -355,7 +355,7 @@ void				render(t_data *data);
  * @brief Updates the minimap
  * @param data
  */
-void				draw_minimap(t_data *data);
+void				draw_calls(t_data *data);
 
 /**
  * @brief Simple line-drawing function.

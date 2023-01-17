@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:59:40 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 07:32:49 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:54:43 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	cast_and_draw_ray(t_data *data, t_edge ray_edge, int ray_index)
 	t_list	*edge_node;
 	t_edge	edge;
 	t_vec	inter;
+	t_vec	offset;
 	int		dir;
 
 	edge_node = data->wall_edges;
@@ -87,7 +88,9 @@ void	cast_and_draw_ray(t_data *data, t_edge ray_edge, int ray_index)
 	}
 	door_cast(data, &ray_edge, &inter, &dir);
 	render_ray(data, dir, ray_edge.end, ray_index);
-	draw_line(data->minimap, ray_edge, 0x0000FFFF);
+	offset = sub_vec(data->player_pos, (t_vec){MINIMAP_WIDTH / 2, MINIMAP_HEIGHT / 2});
+	edge = (t_edge){sub_vec(ray_edge.start, offset), sub_vec(ray_edge.end, offset), ray_edge.dir};
+	draw_line(data->minimap, edge, 0x0000FFFF);
 }
 
 void	rays(t_data *data)
