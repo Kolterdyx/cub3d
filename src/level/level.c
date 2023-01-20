@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:08:50 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/01/17 19:39:19 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:50:06 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	add_wall(t_data *data, t_vec pos, int direction)
 
 void	wall_case(t_data *data, t_vec pos, t_vec shape, const int *arr)
 {
-	if (pos.y == 0 || !arr[(int)((pos.y - 1) * shape.x + pos.x)])
+	if (pos.y == 0 || arr[(int)((pos.y - 1) * shape.x + pos.x)] != 1)
 		add_wall(data, (t_vec){pos.x, pos.y}, 0);
-	if (pos.x == (int)shape.x - 1 || !arr[(int)(pos.y * shape.x + pos.x + 1)])
+	if (pos.x == (int)shape.x - 1 || arr[(int)(pos.y * shape.x + pos.x + 1)] != 1)
 		add_wall(data, (t_vec){pos.x, pos.y}, 1);
-	if (pos.y == (int)shape.y - 1 || !arr[(int)((pos.y + 1) * shape.x + pos.x)])
+	if (pos.y == (int)shape.y - 1 || arr[(int)((pos.y + 1) * shape.x + pos.x)] != 1)
 		add_wall(data, (t_vec){pos.x, pos.y}, 2);
-	if (pos.x == 0 || !arr[(int)(pos.y * shape.x + pos.x - 1)])
+	if (pos.x == 0 || arr[(int)(pos.y * shape.x + pos.x - 1)] != 1)
 		add_wall(data, (t_vec){pos.x, pos.y}, 3);
 }
 
