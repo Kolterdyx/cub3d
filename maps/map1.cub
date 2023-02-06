@@ -1,0 +1,14 @@
+WE /Users/apena-ba/Proyectos/Proyectos42/nivel4/cub3d/assets/pngs/oeste.png
+C 225,30,0
+NO /Users/apena-ba/Proyectos/Proyectos42/nivel4/cub3d/assets/pngs/norte.png
+
+F 1,1,1
+EA /Users/apena-ba/Proyectos/Proyectos42/nivel4/cub3d/assets/pngs/este.png
+
+SO /Users/apena-ba/Proyectos/Proyectos42/nivel4/cub3d/assets/pngs/sur.png
+SP /Users/apena-ba/Proyectos/Proyectos42/nivel4/cub3d/assets/pngs/sprite.png
+DO /Users/apena-ba/Proyectos/Proyectos42/nivel4/cub3d/assets/pngs/door.png
+
+1111111111111111111111111111111111111111111111111111111111111111111111
+1S000000000000000000000000000000000000000000000000000000000000000000001
+11111111111111111111111111111111111111111111111111111111111111111111111

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/01/17 21:10:12 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/02/01 20:32:58 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define HEIGHT 540.
 
 # define FOV 60.
-# define RAYS 960.
+# define RAYS 900.
 // Length in map units (1 * TILE_SIZE) of a ray
 # define RAY_LENGTH 20.
 
@@ -91,6 +91,13 @@ typedef struct s_door
  * it's easier that way. (0 = North, 1 = East, 2 = South, 3 = West, 4 = Door).
  *
  */
+
+typedef struct s_parser
+{
+	char	**name;
+	char	**value;
+}			t_parser;
+
 typedef struct t_data
 {
 	mlx_t			*mlx;
@@ -111,6 +118,8 @@ typedef struct t_data
 	t_vec			player_pos;
 	double			player_angle;
 	t_list			*rays;
+	int				player_dir;
+	char			**textures_path;
 }					t_data;
 
 void				key_hook(mlx_key_data_t keydata, void *param);
@@ -518,13 +527,33 @@ uint32_t			rgb_to_int(int r, int g, int b);
 
 /**
  * @brief Parse a map file.
- * @param argc Number of arguments
- * @param argv Arguments
+ * @param info Struct used to store different data.
+ * @param argv Arguments.
  * @param map_arr Pointer to map contents array.
  * @param dimensions Pointer to map dimensions.
  * @return Boolean, whether the map was successfully parsed or not.
  */
-int					parser(int argc, char **argv, int **map_arr, t_vec *dimensions);
+int			parser(t_data *info, char **argv, int **map_arr, t_vec *dimensions);
+
+int			first_part_check(char **file, int *j, t_data *info);
+
+char		**second_part_check(char **file, t_data *info);
+
+char		*ft_strjoin_free(char *str1, const char *str2);
+
+int			condition(char c);
+
+int			map_filler(char **map, int **map_arr, t_vec *dimensions);
+
+void		ft_print_data(int *map, t_vec dimensions);
+
+void		ft_charpp_printf(char **charpp);
+
+void		set_char(char *str, int start, int end, char c);
+
+void		ft_parser_error(char *str);
+
+int			get_player_dir(char c, int *flag);
 
 t_list				*ft_lsti(t_list *lst, int index);
 

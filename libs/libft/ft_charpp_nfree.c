@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arradd_back.c                                   :+:      :+:    :+:   */
+/*   ft_charpp_nfree.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 23:33:25 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/01/23 18:24:11 by apena-ba         ###   ########.fr       */
+/*   Created: 2023/01/30 20:56:21 by apena-ba          #+#    #+#             */
+/*   Updated: 2023/01/30 20:58:01 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+# include "libft.h"
 
-char	**ft_arradd_back(char **arr, char *value)
+void	*ft_charpp_nfree(char **to_free, size_t n)
 {
-	char	**new;
-	int		i;
+	size_t	pos;
 
-	i = 0;
-	while (arr && arr[i])
-		i++;
-	new = ft_calloc(i + 2, sizeof(char *));
-	i = 0;
-	while (arr && arr[i])
+	pos = 0;
+	if (to_free == NULL)
+		return (NULL);
+	while (pos < n)
 	{
-		new[i] = arr[i];
-		i++;
+		free(to_free[pos]);
+		pos++;
 	}
-	new[i] = value;
-	free(arr);
-	return (new);
+	free(to_free);
+	return (NULL);
 }

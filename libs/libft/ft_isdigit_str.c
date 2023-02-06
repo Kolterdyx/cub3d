@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arradd_back.c                                   :+:      :+:    :+:   */
+/*   ft_isdigit_str.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 23:33:25 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/01/23 18:24:11 by apena-ba         ###   ########.fr       */
+/*   Created: 2023/01/19 20:09:57 by apena-ba          #+#    #+#             */
+/*   Updated: 2023/01/19 20:09:58 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_arradd_back(char **arr, char *value)
+int	ft_isdigit_str(const char *str)
 {
-	char	**new;
-	int		i;
+	int	i;
 
 	i = 0;
-	while (arr && arr[i])
-		i++;
-	new = ft_calloc(i + 2, sizeof(char *));
-	i = 0;
-	while (arr && arr[i])
+	if (!str[i])
+		return (0);
+	while (str[i])
 	{
-		new[i] = arr[i];
+		if (!ft_isdigit(str[i]))
+			return (0);
 		i++;
 	}
-	new[i] = value;
-	free(arr);
-	return (new);
+	return (1);
 }

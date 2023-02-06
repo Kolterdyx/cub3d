@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 23:33:25 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/10 14:21:18 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/02/01 19:29:47 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
+int					ft_isspace_str(char *str);
+int					ft_isdigit_str(const char *str);
+void				*ft_charpp_free(char **to_free);
+void				*ft_charpp_nfree(char **to_free, size_t n);
+char				**ft_charpp_cpy(char **to_copy);
+int					ft_charpp_len(char **charpp);
 char				*get_next_line(int fd);
 
 /* Bonus */

@@ -36,6 +36,12 @@ SRCS =  ft_atoi.c		\
 		ft_printf.c     \
 		ft_printf_utils.c \
 		ft_puthex.c     \
+		ft_charpp_free.c \
+		ft_charpp_nfree.c \
+		ft_charpp_len.c \
+		ft_charpp_cpy.c \
+		ft_isspace_str.c \
+		ft_isdigit_str.c \
 		get_next_line_bonus.c \
 		get_next_line_utils_bonus.c \
 		ft_arradd_back.c

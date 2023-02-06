@@ -15,7 +15,6 @@ SRC_FILES = main.c \
 			utils/bit_stuff.c \
 			utils/utils.c \
 			utils/array_utils.c \
-			parser/parser.c \
 			setup.c \
 			render/render.c \
 			render/minimap.c \
@@ -24,7 +23,12 @@ SRC_FILES = main.c \
 			render/texture_utils.c \
 			level/level.c \
 			level/level_elements.c \
-			level/collisions.c
+			level/collisions.c \
+			parser/parser_utils.c \
+			parser/map_info_check.c \
+			parser/map_content_check.c \
+			parser/map_filler.c \
+			parser/parser.c \
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 
@@ -66,6 +70,12 @@ clean:
 	@rm -rf $(OBJ_PATH)
 	@echo "Cleaning $(OBJ_PATH)"
 
+cclean:
+	@rm -rf $(OBJ_PATH)
+	@echo "Cleaning $(OBJ_PATH)"
+	@rm -f $(NAME)
+	@echo "Cleaning $(NAME)"
+
 fclean: clean
 	@rm -f $(NAME)
 	@echo "Cleaning $(NAME)"
@@ -74,5 +84,7 @@ fclean: clean
     done
 
 re: fclean all
+
+rre: cclean all
 
 .PHONY: all clean fclean re $(LIB_SRCS)
