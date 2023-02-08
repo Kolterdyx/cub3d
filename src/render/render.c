@@ -38,13 +38,13 @@ void	render_wall(t_data *data, t_edge rect, t_vec hit_pos)
 	(void)hit_pos;
 }
 
-void	render_ray(t_data *data, int dir, t_vec inter, int ray_index)
+void	render_ray(t_data *data, int tex_index, t_vec inter, int ray_index)
 {
 	double	dist;
 	t_vec	size;
 	double	ray_angle;
 
-	if (dir == -1)
+	if (tex_index == -1)
 		return ;
 	ray_angle = ((ray_index * FOV / RAYS) * M_PI / 180);
 	dist = vec_dist(data->player_pos, inter) * cos(ray_angle - (FOV * M_PI / 180) / 2);
@@ -55,5 +55,5 @@ void	render_ray(t_data *data, int dir, t_vec inter, int ray_index)
 	if (size.x < 1)
 		size.x = 1;
 	render_wall(data, (t_edge){(t_vec){ray_index * size.x, HEIGHT / 2 - size.y
-		/ 2}, size, dir}, wall_pos(inter, dir));
+		/ 2}, size, tex_index}, wall_pos(inter, tex_index));
 }

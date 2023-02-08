@@ -121,6 +121,7 @@ typedef struct t_data
 	int				player_dir;
 	char			**textures_path;
 	t_list			*map;
+	t_list			*sprites;
 }					t_data;
 
 void				key_hook(mlx_key_data_t keydata, void *param);
@@ -476,7 +477,7 @@ void				init_door(t_data *data, t_vec pos, t_vec shape,
  * Initialize sprite
  * @param data
  */
-void				init_sprite(t_data *data);
+void				init_sprite(t_data *data, t_vec pos);
 
 /**
  * Mouse hook
@@ -491,12 +492,12 @@ void				mouse_hook(mouse_key_t key, action_t action,
 /**
  * Render images based on ray casts.
  * @param data
- * @param dir Direction of the intersection
+ * @param tex_index Direction of the intersection
  * @param inter Position of the intersection
  * @param ray_index Index of the ray
  */
-void				render_ray(t_data *data, int dir, t_vec inter,
-						int ray_index);
+void				render_ray(t_data *data, int tex_index, t_vec inter,
+							   int ray_index);
 
 /**
  * Draw the wall section corresponding to hit_pos

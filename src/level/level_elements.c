@@ -12,9 +12,14 @@
 
 #include "cub3d.h"
 
-void init_sprite(t_data *data)
+void	init_sprite(t_data *data, t_vec pos)
 {
-	(void)data;
+	t_edge	*edge = ft_calloc(1, sizeof(t_edge));
+	edge->tex_index = 5;
+	edge->start = vec_scl((t_vec){pos.x, pos.y + 0.5f}, TILE_SIZE);
+	edge->end = vec_scl((t_vec){pos.x + 1, pos.y + 0.5f}, TILE_SIZE);
+
+	ft_lstadd_back(&data->sprites, ft_lstnew(edge));
 }
 
 t_door	*door_alloc(t_vec pos, int dir)
