@@ -1,7 +1,7 @@
-NO ./assets/test/north_test.png
-SO ./assets/test/south_test.png
-WE ./assets/test/west_test.png
-EA ./assets/test/east_test.png
+NO ./assets/test/north.png
+SO ./assets/test/south.png
+WE ./assets/test/west.png
+EA ./assets/test/east.png
 D ./assets/test/door.png
 SP ./assets/test/sprite.png
 

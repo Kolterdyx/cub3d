@@ -73,6 +73,6 @@ t_edge	*edge_alloc(t_vec start, t_vec end, int dir)
 	new = ft_calloc(1, sizeof(t_edge));
 	new->start = start;
 	new->end = end;
-	new->dir = dir;
+	new->tex_index = dir;
 	return (new);
 }

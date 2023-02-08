@@ -61,6 +61,19 @@ void	ft(void)
 	system("leaks -q cub3D");
 }
 
+void	load_textures(t_data *data);
+
+void	load_colors(t_data *data)
+{
+	char **ceil = ft_split(data->textures_path[7], ',');
+	char **floor = ft_split(data->textures_path[6], ',');
+	uint32_t c = (ft_atoi(ceil[0]) << 24) | (ft_atoi(ceil[1]) << 16) | (ft_atoi(ceil[2]) << 8) | 0xFF;
+	uint32_t f = (ft_atoi(floor[0]) << 24) | (ft_atoi(floor[1]) << 16) | (ft_atoi(floor[2]) << 8) | 0xFF;
+
+	data->ceiling_color = c;
+	data->floor_color = f;
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -68,28 +81,11 @@ int	main(int argc, char **argv)
 	t_vec	dimensions;
 
 	atexit(ft);
-	// map_arr = (int [(14 * 16)]){
-	// 	0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	// 	0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1,
-	// 	0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1,
-	// 	0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-	// 	0, 0, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 4, 1,
-	// 	0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1,
-	// 	0, 0, 1, 0, 0, 4, 0, 0, 0, 1, 1, 1, 0, 1,
-	// 	0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1,
-	// 	0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 4, 0, 0, 1,
-	// 	0, 0, 1, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1,
-	// 	1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0,
-	// 	1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0,
-	// 	1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0,
-	// 	1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0,
-	// 	0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0,
-	// 	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0
-	// };
-	// dimensions = (t_vec){14, 16};
 	(void)argc;
 	data = init_data();
 	parser(data, argv, &map_arr, &dimensions);
+	load_colors(data);
+	load_textures(data);
 	init_map(data, map_arr, dimensions);
 	mlx_loop_hook(data->mlx, loop, data);
 	mlx_key_hook(data->mlx, key_hook, data);

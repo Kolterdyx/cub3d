@@ -21,13 +21,13 @@ void	draw_doors(t_data *data, t_vec offset)
 	while (doors)
 	{
 		door = *((t_door *)doors->content);
-		door.edge = (t_edge){sub_vec(door.edge.start, offset), sub_vec(door.edge.end, offset), door.edge.dir};
+		door.edge = (t_edge){sub_vec(door.edge.start, offset), sub_vec(door.edge.end, offset), door.edge.tex_index};
 		draw_line(data->minimap, door.edge, 0xFF00FFFF);
 		doors = doors->next;
 	}
 }
 
-void draw_walls(t_data *data, t_vec offset)
+void	draw_walls(t_data *data, t_vec offset)
 {
 	t_list	*edges;
 	t_edge	edge;
@@ -38,14 +38,14 @@ void draw_walls(t_data *data, t_vec offset)
 	while (points)
 	{
 		point = *((t_vec *)points->content);
-		draw_rectangle(data->minimap, sub_vec(vec_scl(point, TILE_SIZE), offset), (t_vec){TILE_SIZE, TILE_SIZE}, 0x0F0F0FFF);
+		draw_rectangle(data->minimap, sub_vec(vec_scl(point, TILE_SIZE), offset), (t_vec){TILE_SIZE, TILE_SIZE}, 0x4F4F4FFF);
 		points = points->next;
 	}
 	edges = data->wall_edges;
 	while (edges)
 	{
 		edge = *((t_edge *)edges->content);
-		edge = (t_edge){sub_vec(edge.start, offset), sub_vec(edge.end, offset), edge.dir};
+		edge = (t_edge){sub_vec(edge.start, offset), sub_vec(edge.end, offset), edge.tex_index};
 		draw_line(data->minimap, edge, 0xFFFFFFFF);
 		edges = edges->next;
 	}

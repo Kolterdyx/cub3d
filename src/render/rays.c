@@ -83,14 +83,14 @@ void	cast_and_draw_ray(t_data *data, t_edge ray_edge, int ray_index)
 					data->player_pos)))
 		{
 			ray_edge.end = inter;
-			dir = edge.dir;
+			dir = edge.tex_index;
 		}
 		edge_node = edge_node->next;
 	}
 	door_cast(data, &ray_edge, &inter, &dir);
 	render_ray(data, dir, ray_edge.end, ray_index);
 	offset = sub_vec(data->player_pos, (t_vec){MINIMAP_WIDTH / 2, MINIMAP_HEIGHT / 2});
-	edge = (t_edge){sub_vec(ray_edge.start, offset), sub_vec(ray_edge.end, offset), ray_edge.dir};
+	edge = (t_edge){sub_vec(ray_edge.start, offset), sub_vec(ray_edge.end, offset), ray_edge.tex_index};
 	draw_line(data->minimap, edge, 0x0000FFFF);
 }
 

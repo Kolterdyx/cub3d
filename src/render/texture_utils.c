@@ -91,6 +91,8 @@ void	draw_texture_area_scaled(mlx_t *mlx, mlx_image_t *img,
 	temp = cropped_texture(mlx, texture, area[0], area[1]);
 	temp2 = scale_image(mlx, temp, area[2]);
 	mlx_delete_image(mlx, temp);
+	if (!temp2)
+		return ;
 	while (y < (int)temp2->height)
 	{
 		x = 0;

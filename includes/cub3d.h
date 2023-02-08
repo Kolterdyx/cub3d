@@ -53,14 +53,14 @@ typedef struct s_vector
  *
  * @param start Start point.
  * @param end End point.
- * @param dir Cardinal direction of the edge (the wall it represents).
- * 0 = North, 1 = East, 2 = South, 3 = West.
+ * @param tex_index Texture index for the texture to be rendered on this edge.
+ * 0 = North, 1 = East, 2 = South, 3 = West, 4 = Door, 5 = Sprite
  */
 typedef struct s_edge
 {
 	t_vec			start;
 	t_vec			end;
-	int				dir;
+	int				tex_index;
 }					t_edge;
 
 /**

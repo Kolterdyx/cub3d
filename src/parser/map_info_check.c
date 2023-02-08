@@ -129,7 +129,7 @@ static int	get_index_tocomp(char *line, char *value, t_parser *parser_info)
 		{
 			if (parser_info->value[i] != NULL)
 				return (-1);
-			parser_info->value[i] = ft_substr(value, 0, ft_strlen(value));
+			parser_info->value[i] = ft_substr(value, 0, ft_strlen(value) - 1);
 			return (i);
 		}
         i++;
