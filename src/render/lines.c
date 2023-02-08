@@ -14,7 +14,7 @@
 
 void	put_pixel(mlx_image_t *img, int x, int y, uint32_t color)
 {
-	if (x < 0 || x >= (int)img->width || y < 0 || y >= (int)img->height)
+	if (x < 0 || x >= (int)img->width || y < 0 || y >= (int)img->height || !(color & 0xFF))
 		return ;
 	mlx_put_pixel(img, x, y, color);
 }

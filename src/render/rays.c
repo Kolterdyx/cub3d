@@ -45,7 +45,27 @@ t_vec	wall_pos(t_vec pos, int dir)
 	return (wall_pos);
 }
 
-void	door_cast(t_data *data, t_edge *ray_edge, t_vec *inter, int *dir)
+void	sprite_cast(t_data *data, t_edge *ray_edge, t_vec *inter, int *tex_index)
+{
+	t_list	*sprite_node;
+	t_edge	sprite;
+
+	sprite_node = data->sprites;
+	while (sprite_node)
+	{
+		sprite = *(t_door *)sprite_node->content;
+		if (edges_intersect(*ray_edge, sprite, inter)
+			&& (vec_dist(*inter, data->player_pos) < vec_dist(ray_edge->end,
+															  data->player_pos)))
+		{
+			*tex_index = 4;
+			ray_edge->end = *inter;
+		}
+		sprite_node = sprite_node->next;
+	}
+}
+
+void	door_cast(t_data *data, t_edge *ray_edge, t_vec *inter, int *tex_index)
 {
 	t_list	*door_node;
 	t_door	door;
@@ -58,37 +78,48 @@ void	door_cast(t_data *data, t_edge *ray_edge, t_vec *inter, int *dir)
 			&& (vec_dist(*inter, data->player_pos) < vec_dist(ray_edge->end,
 					data->player_pos)))
 		{
-			*dir = 4;
+			*tex_index = 4;
 			ray_edge->end = *inter;
 		}
 		door_node = door_node->next;
 	}
 }
 
-void	cast_and_draw_ray(t_data *data, t_edge ray_edge, int ray_index)
+void	wall_cast(t_data *data, t_edge *ray_edge, t_vec *inter, int *tex_index)
 {
-	t_list	*edge_node;
 	t_edge	edge;
-	t_vec	inter;
-	t_vec	offset;
-	int		dir;
+	t_list	*edge_node;
 
-	dir = -1;
 	edge_node = data->wall_edges;
 	while (edge_node)
 	{
 		edge = *(t_edge *)edge_node->content;
-		if (edges_intersect(ray_edge, edge, &inter) && (vec_dist(inter,
-					data->player_pos) < vec_dist(ray_edge.end,
-					data->player_pos)))
+		if (edges_intersect(*ray_edge, edge, inter) && (vec_dist(*inter,
+																 data->player_pos) < vec_dist(ray_edge->end,
+																							  data->player_pos)))
 		{
-			ray_edge.end = inter;
-			dir = edge.tex_index;
+			ray_edge->end = *inter;
+			*tex_index = edge.tex_index;
 		}
 		edge_node = edge_node->next;
 	}
-	door_cast(data, &ray_edge, &inter, &dir);
-	render_ray(data, dir, ray_edge.end, ray_index);
+}
+
+void	cast_and_draw_ray(t_data *data, t_edge ray_edge, int ray_index)
+{
+	t_edge	edge;
+	t_vec	inter;
+	t_vec	offset;
+	int		tex_index;
+
+	tex_index = -1;
+	door_cast(data, &ray_edge, &inter, &tex_index);
+	wall_cast(data, &ray_edge, &inter, &tex_index);
+	render_ray(data, tex_index, ray_edge.end, ray_index);
+	tex_index = -1;
+	sprite_cast(data, &ray_edge, &inter, &tex_index);
+	wall_cast(data, &ray_edge, &inter, &tex_index);
+	render_ray(data, tex_index, ray_edge.end, ray_index);
 	offset = sub_vec(data->player_pos, (t_vec){MINIMAP_WIDTH / 2, MINIMAP_HEIGHT / 2});
 	edge = (t_edge){sub_vec(ray_edge.start, offset), sub_vec(ray_edge.end, offset), ray_edge.tex_index};
 	draw_line(data->minimap, edge, 0x0000FFFF);
