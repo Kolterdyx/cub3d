@@ -44,14 +44,16 @@ void	render_ray(t_data *data, int dir, t_vec inter, int ray_index)
 	t_vec	size;
 	double	ray_angle;
 
+	if (dir == -1)
+		return ;
 	ray_angle = ((ray_index * FOV / RAYS) * M_PI / 180);
 	dist = vec_dist(data->player_pos, inter) * cos(ray_angle - ((FOV / 2) * M_PI / 180));
 	size.y = (1. / (dist / 4));
-	if (size.y > HEIGHT)
-		size.y = HEIGHT;
 	size.x = WIDTH / RAYS;
 	if (size.x > WIDTH)
 		size.x = WIDTH;
+	if (size.x < 1)
+		size.x = 1;
 	render_wall(data, (t_edge){(t_vec){ray_index * size.x, HEIGHT / 2 - size.y
 		/ 2}, size, dir}, wall_pos(inter, dir));
 }

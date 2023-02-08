@@ -73,6 +73,7 @@ void	cast_and_draw_ray(t_data *data, t_edge ray_edge, int ray_index)
 	t_vec	offset;
 	int		dir;
 
+	dir = -1;
 	edge_node = data->wall_edges;
 	while (edge_node)
 	{

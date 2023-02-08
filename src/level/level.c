@@ -49,6 +49,11 @@ void	wall_case(t_data *data, t_vec pos, t_vec shape, const int *arr)
 		add_wall(data, (t_vec){pos.x, pos.y}, 2);
 	if (pos.x == 0 || arr[(int)(pos.y * shape.x + pos.x - 1)] != 1)
 		add_wall(data, (t_vec){pos.x, pos.y}, 3);
+	if (arr[(int)(pos.y * shape.x + pos.x)] == 1) {
+		t_vec *vec = ft_calloc(sizeof(t_vec), 1);
+		*vec = pos;
+		ft_lstadd_back(&data->map, ft_lstnew(vec));
+	}
 }
 
 void	init_map(t_data *data, const int *arr, t_vec shape)

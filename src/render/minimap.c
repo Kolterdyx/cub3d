@@ -27,13 +27,20 @@ void	draw_doors(t_data *data, t_vec offset)
 	}
 }
 
-void	draw_minimap(t_data *data)
+void draw_walls(t_data *data, t_vec offset)
 {
 	t_list	*edges;
 	t_edge	edge;
-	t_vec	offset;
+	t_list	*points;
+	t_vec	point;
 
-	offset = sub_vec(data->player_pos, (t_vec){MINIMAP_WIDTH / 2, MINIMAP_HEIGHT / 2});
+	points = data->map;
+	while (points)
+	{
+		point = *((t_vec *)points->content);
+		draw_rectangle(data->minimap, sub_vec(vec_scl(point, TILE_SIZE), offset), (t_vec){TILE_SIZE, TILE_SIZE}, 0x0F0F0FFF);
+		points = points->next;
+	}
 	edges = data->wall_edges;
 	while (edges)
 	{
@@ -42,6 +49,14 @@ void	draw_minimap(t_data *data)
 		draw_line(data->minimap, edge, 0xFFFFFFFF);
 		edges = edges->next;
 	}
+}
+
+void	draw_minimap(t_data *data)
+{
+	t_vec	offset;
+
+	offset = sub_vec(data->player_pos, (t_vec){MINIMAP_WIDTH / 2, MINIMAP_HEIGHT / 2});
+	draw_walls(data, offset);
 	draw_circle(data->minimap, sub_vec(data->player_pos, offset), PLAYER_HITBOX_RADIUS
 												 * TILE_SIZE, 0x00FF00FF);
 	draw_circle(data->minimap, sub_vec(data->player_pos, offset), PLAYER_INTERACTION_RADIUS

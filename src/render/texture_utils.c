@@ -57,6 +57,8 @@ mlx_image_t	*scale_image(mlx_t *mlx, mlx_image_t *img, t_vec scale)
 
 	y = 0;
 	new = mlx_new_image(mlx, scale.x * img->width, scale.y * img->height);
+	if (!new)
+		return (NULL);
 	while (y < new->height)
 	{
 		x = 0;

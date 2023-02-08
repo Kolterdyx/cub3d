@@ -27,7 +27,7 @@
 # define FOV 60.
 # define RAYS 960.
 // Length in map units (1 * TILE_SIZE) of a ray
-# define RAY_LENGTH 20.
+# define RAY_LENGTH 200.
 
 # define MINIMAP_WIDTH 240.
 # define MINIMAP_HEIGHT 240.
@@ -120,6 +120,7 @@ typedef struct t_data
 	t_list			*rays;
 	int				player_dir;
 	char			**textures_path;
+	t_list			*map;
 }					t_data;
 
 void				key_hook(mlx_key_data_t keydata, void *param);
