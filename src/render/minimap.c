@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:54:38 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/01/17 19:05:03 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/02/08 12:12:37 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	draw_minimap(t_data *data)
 												 * TILE_SIZE, 0x00FF00FF);
 	draw_circle(data->minimap, sub_vec(data->player_pos, offset), PLAYER_INTERACTION_RADIUS
 												 * TILE_SIZE, 0x00FF00FF);
-	draw_line(data->minimap, (t_edge){sub_vec(data->player_pos, offset), add_vec(sub_vec(data->player_pos, offset), vec_scl(vec_from_rad(data->player_angle + M_PI - (FOV / 2) * (M_PI / 180)), 20)),
+	draw_line(data->minimap, (t_edge){sub_vec(data->player_pos, offset), add_vec(sub_vec(data->player_pos, offset), vec_scl(calc_velocity(data, 0), 20)),
 									  0}, 0xFFFFFFFF);
 	draw_line(data->minimap, (t_edge){(t_vec){0, 0}, (t_vec){MINIMAP_WIDTH, 0},
 									  0}, 0xFFFFFFFF);

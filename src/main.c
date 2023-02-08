@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/02/02 19:53:06 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/02/08 12:12:37 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	update(t_data *data)
 
 	vel = (t_vec){0, 0};
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
-		vel = speed_at_relative_angle(data, 0);
+		vel = calc_velocity(data, 0);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
-		vel = speed_at_relative_angle(data, M_PI);
+		vel = calc_velocity(data, M_PI);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
-		vel = speed_at_relative_angle(data, -M_PI_2);
+		vel = calc_velocity(data, -M_PI_2);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
-		vel = speed_at_relative_angle(data, M_PI_2);
+		vel = calc_velocity(data, M_PI_2);
 	collisions(data);
 	data->player_pos = add_vec(data->player_pos, vel);
 }

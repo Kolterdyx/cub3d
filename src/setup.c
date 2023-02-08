@@ -21,10 +21,10 @@ void	init_player(t_data *data, t_vec pos)
 	data->player_pos = add_vec(vec_scl(pos, TILE_SIZE),
 			vec_scl((t_vec){PLAYER_HITBOX_RADIUS, PLAYER_HITBOX_RADIUS},
 				TILE_SIZE));
-	data->player_angle = (FOV / 2) * M_PI / 180 + M_PI_2;
+	data->player_angle = 0;
 	while (i < RAYS)
 	{
-		radians = data->player_angle + ((i * FOV / RAYS) * M_PI / 180);
+		radians = -(FOV / 2 * M_PI / 180) + i * (FOV / RAYS * M_PI / 180);
 		ft_lstadd_back(&data->rays,
 			ft_lstnew(vec_cpy(vec_from_rad(radians))));
 		i++;

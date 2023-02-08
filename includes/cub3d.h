@@ -25,7 +25,7 @@
 # define HEIGHT 540.
 
 # define FOV 60.
-# define RAYS 900.
+# define RAYS 960.
 // Length in map units (1 * TILE_SIZE) of a ray
 # define RAY_LENGTH 20.
 
@@ -440,7 +440,7 @@ void				draw_rectangle(mlx_image_t *img, t_vec pos, t_vec size,
  * @param angle Relative angle in radians.
  * @return Velocity vector.
  */
-t_vec				speed_at_relative_angle(t_data *data, double angle);
+t_vec				calc_velocity(t_data *data, double angle);
 
 /**
  * Cursor hook
