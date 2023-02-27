@@ -49,7 +49,6 @@ void	init_door(t_data *data, t_vec pos, t_vec shape, const int *arr)
 {
 	int	dir;
 
-	dir = 0;
 	if (arr_index(add_vec(pos, (t_vec){0, -1}), arr, shape.x, 1) &&
 		arr_index(add_vec(pos, (t_vec){0, 1}), arr, shape.x, 1))
 		dir = 0;
@@ -63,7 +62,7 @@ void	init_door(t_data *data, t_vec pos, t_vec shape, const int *arr)
 		add_wall(data, (t_vec){pos.x, pos.y - 1}, 2);
 		add_wall(data, (t_vec){pos.x, pos.y + 1}, 0);
 	}
-	else if (dir == 1)
+	else
 	{
 		add_wall(data, (t_vec){pos.x - 1, pos.y}, 1);
 		add_wall(data, (t_vec){pos.x + 1, pos.y}, 3);
