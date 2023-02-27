@@ -27,7 +27,6 @@ void	update(t_data *data)
 		vel = calc_velocity(data, M_PI_2);
 	collisions(data);
 	data->player_pos = add_vec(data->player_pos, vel);
-	update_sprites(data);
 }
 
 void	loop(void *param)
