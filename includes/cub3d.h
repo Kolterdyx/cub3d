@@ -497,7 +497,7 @@ void				mouse_hook(mouse_key_t key, action_t action,
  * @param ray_index Index of the ray
  */
 void				render_ray(t_data *data, int tex_index, t_vec inter,
-							   int ray_index);
+						int ray_index);
 
 /**
  * Draw the wall section corresponding to hit_pos
@@ -535,33 +535,32 @@ uint32_t			rgb_to_int(int r, int g, int b);
  * @param dimensions Pointer to map dimensions.
  * @return Boolean, whether the map was successfully parsed or not.
  */
-int			parser(t_data *info, char **argv, int **map_arr, t_vec *dimensions);
+int					parser(t_data *info, char **argv, int **map_arr, t_vec *dimensions);
 
-int			first_part_check(char **file, int *j, t_data *info);
+int					first_part_check(char **file, int *j, t_data *info);
 
-char		**second_part_check(char **file, t_data *info);
+char				**second_part_check(char **file, t_data *info);
 
-char		*ft_strjoin_free(char *str1, const char *str2);
+char				*ft_strjoin_free(char *str1, const char *str2);
 
-int			condition(char c);
+int					condition(char c);
 
-int			map_filler(char **map, int **map_arr, t_vec *dimensions);
+int					map_filler(char **map, int **map_arr, t_vec *dimensions);
 
-void		ft_print_data(int *map, t_vec dimensions);
+void				ft_print_data(int *map, t_vec dimensions);
 
-void		ft_charpp_printf(char **charpp);
+void				ft_charpp_printf(char **charpp);
 
-void		set_char(char *str, int start, int end, char c);
+void				set_char(char *str, int start, int end, char c);
 
-void		ft_parser_error(char *str);
+void				ft_parser_error(char *str);
 
-int			get_player_dir(char c, int *flag);
+int					get_player_dir(char c, int *flag);
 
 t_list				*ft_lsti(t_list *lst, int index);
 
-void update_sprites(t_data *data);
+void				update_sprites(t_data *data);
 
-void	load_textures(t_data *data);
-
+void				load_textures(t_data *data);
 
 #endif //CUB3D_H
