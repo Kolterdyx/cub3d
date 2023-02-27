@@ -20,7 +20,6 @@ void	init_sprite(t_data *data, t_vec pos)
 	edge->tex_index = 5;
 	edge->start = vec_scl((t_vec){pos.x, pos.y + 0.5f}, TILE_SIZE);
 	edge->end = vec_scl((t_vec){pos.x + 1, pos.y + 0.5f}, TILE_SIZE);
-	printf("sprite.x = %d, y =%d\n", (int)(pos.x), (int)(pos.y));
 	ft_lstadd_back(&data->sprites, ft_lstnew(edge));
 }
 

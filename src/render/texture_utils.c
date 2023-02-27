@@ -58,7 +58,6 @@ mlx_image_t	*scale_image(mlx_t *mlx, mlx_image_t *img, t_vec scale)
 	new = mlx_new_image(mlx, scale.x * img->width, scale.y * img->height);
 	y = (new->height - HEIGHT) / 2;
 	y = fmax(y, 0);
-	printf("y = %u\n", y);
 	if (!new)
 		return (NULL);
 	while (y < (int)new->height - (new->height - HEIGHT) / 2)
