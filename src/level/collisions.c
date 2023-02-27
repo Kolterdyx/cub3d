@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 22:36:27 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/02/08 12:11:07 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:03:56 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	collisions(t_data *data)
 t_vec	calc_velocity(t_data *data, double angle)
 {
 	t_vec	vel;
+
 	vel = vec_from_rad(data->player_angle + angle);
 	vel = vec_scl(vel, PLAYER_SPEED * TILE_SIZE);
 	return (vel);

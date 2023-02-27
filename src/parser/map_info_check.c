@@ -6,7 +6,7 @@
 /*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:18:32 by apena-ba          #+#    #+#             */
-/*   Updated: 2023/02/01 20:18:54 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:13:10 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ static int	line_check(char *line, char *to_comp)
 	texture = mlx_load_png(trimed);
 	if (!texture)
 		return (ft_charpp_free(splited), free(trimed),
-			ft_parser_error("failed to open .png file from path provided\n"), 1);
+			ft_parser_error("failed to open .png file from path provided\n"),
+			1);
 	mlx_delete_texture(texture);
 	ft_charpp_free(splited);
 	free(trimed);
@@ -125,14 +126,15 @@ static int	get_index_tocomp(char *line, char *value, t_parser *parser_info)
 		return (-1);
 	while (i < max)
 	{
-		if (ft_strncmp(line, parser_info->name[i], ft_strlen(parser_info->name[i])) == 0)
+		if (ft_strncmp(line, parser_info->name[i],
+				ft_strlen(parser_info->name[i])) == 0)
 		{
 			if (parser_info->value[i] != NULL)
 				return (-1);
 			parser_info->value[i] = ft_substr(value, 0, ft_strlen(value) - 1);
 			return (i);
 		}
-        i++;
+		i++;
 	}
 	return (-1);
 }
@@ -146,7 +148,7 @@ static int	check_final_data(t_parser *parser_info)
 	{
 		if (parser_info->value[i] == NULL)
 			return (0);
-        i++;
+		i++;
 	}
 	return (1);
 }
@@ -193,8 +195,7 @@ int	first_part_check(char **file, int *j, t_data *info)
 			check = info_check(file[i], &parser_info);
 			if (check == 1)
 				return (ft_charpp_nfree(parser_info.name, 8),
-						ft_charpp_nfree(parser_info.value, 8),
-						1);
+					ft_charpp_nfree(parser_info.value, 8), 1);
 			else if (check == 2)
 				break ;
 			i++;

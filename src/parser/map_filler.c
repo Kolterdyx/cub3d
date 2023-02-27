@@ -6,26 +6,15 @@
 /*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 19:26:49 by apena-ba          #+#    #+#             */
-/*   Updated: 2023/02/02 19:47:37 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:17:56 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void ft_print_map_data(int *map_arr, t_vec dimensions){
-	int x = 0;
-	ft_printf("\n\nMAPA\n\n");
-	for(int i = 0; i < dimensions.y; i++){
-		for(int j = 0; j < dimensions.x; j++){
-			ft_printf("%d", map_arr[x++]);
-		}
-		ft_printf("\n");
-	}
-}
-
 static int	get_max_len(char **map)
 {
-	int	i;
+	int		i;
 	size_t	max_len;
 
 	i = 0;
@@ -47,9 +36,9 @@ int	map_filler(char **map, int **map_arr, t_vec *dimensions)
 
 	i = 0;
 	x = 0;
-    map_arr[0] = ft_calloc(sizeof(int), ft_charpp_len(map) * get_max_len(map));
-    if(!*map_arr)
-        return(1);
+	map_arr[0] = ft_calloc(sizeof(int), ft_charpp_len(map) * get_max_len(map));
+	if (!*map_arr)
+		return (1);
 	while (map[i])
 	{
 		j = 0;
@@ -60,11 +49,11 @@ int	map_filler(char **map, int **map_arr, t_vec *dimensions)
 			else if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 					|| map[i][j] == 'W')
 				map_arr[0][x++] = 2;
-			else if(map[i][j] == 'C')
+			else if (map[i][j] == 'C')
 				map_arr[0][x++] = 3;
-			else if(map[i][j] == 'D')
+			else if (map[i][j] == 'D')
 				map_arr[0][x++] = 4;
-			else if(map[i][j] == ' ')
+			else if (map[i][j] == ' ')
 				x++;
 			j++;
 		}
@@ -72,7 +61,5 @@ int	map_filler(char **map, int **map_arr, t_vec *dimensions)
 	}
 	dimensions->x = get_max_len(map);
 	dimensions->y = ft_charpp_len(map);
-	ft_charpp_printf(map);
-	ft_print_map_data(*map_arr, *dimensions);
-    return(0);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lines.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 20:12:19 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/01/17 20:58:03 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:15:40 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	put_pixel(mlx_image_t *img, int x, int y, uint32_t color)
 {
-	if (x < 0 || x >= (int)img->width || y < 0 || y >= (int)img->height || !(color & 0xFF))
+	if (x < 0 || x >= (int)img->width
+		|| y < 0 || y >= (int)img->height || !(color & 0xFF))
 		return ;
 	mlx_put_pixel(img, x, y, color);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:59:40 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/01/17 17:54:43 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/02/14 19:33:53 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	sprite_cast(t_data *data, t_edge *ray_edge, t_vec *inter, int ray_index)
 		sprite = *(t_edge *)sprite_node->content;
 		if (edges_intersect(*ray_edge, sprite, inter)
 			&& (vec_dist(*inter, data->player_pos) < vec_dist(ray_edge->end,
-															  data->player_pos)))
+															data->player_pos)))
 		{
 			ray_edge->end = *inter;
 			render_ray(data, sprite.tex_index, ray_edge->end, ray_index);

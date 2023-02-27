@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   level_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 04:40:42 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 06:47:59 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:05:54 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 void	init_sprite(t_data *data, t_vec pos)
 {
-	t_edge	*edge = ft_calloc(1, sizeof(t_edge));
+	t_edge	*edge;
+
+	edge = ft_calloc(1, sizeof(t_edge));
 	edge->tex_index = 5;
 	edge->start = vec_scl((t_vec){pos.x, pos.y + 0.5f}, TILE_SIZE);
 	edge->end = vec_scl((t_vec){pos.x + 1, pos.y + 0.5f}, TILE_SIZE);
-
+	printf("sprite.x = %d, y =%d\n", (int)(pos.x), (int)(pos.y));
 	ft_lstadd_back(&data->sprites, ft_lstnew(edge));
 }
 

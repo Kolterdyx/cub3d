@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/02/08 12:12:37 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:20:40 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	update(t_data *data)
 		vel = calc_velocity(data, M_PI_2);
 	collisions(data);
 	data->player_pos = add_vec(data->player_pos, vel);
+	update_sprites(data);
 }
 
 void	loop(void *param)
@@ -52,6 +53,7 @@ void	ft_exit(t_data *data, int code)
 	ft_lstclear(&data->wall_edges, free);
 	ft_lstclear(&data->rays, free);
 	ft_lstclear(&data->doors, free);
+	ft_lstclear(&data->sprites, free);
 	free(data);
 	exit(code);
 }
@@ -61,17 +63,23 @@ void	ft(void)
 	system("leaks -q cub3D");
 }
 
-void	load_textures(t_data *data);
-
 void	load_colors(t_data *data)
 {
-	char **ceil = ft_split(data->textures_path[7], ',');
-	char **floor = ft_split(data->textures_path[6], ',');
-	uint32_t c = (ft_atoi(ceil[0]) << 24) | (ft_atoi(ceil[1]) << 16) | (ft_atoi(ceil[2]) << 8) | 0xFF;
-	uint32_t f = (ft_atoi(floor[0]) << 24) | (ft_atoi(floor[1]) << 16) | (ft_atoi(floor[2]) << 8) | 0xFF;
+	char		**ceil;
+	char		**floor;
+	uint32_t	c;
+	uint32_t	f;
 
+	ceil = ft_split(data->textures_path[7], ',');
+	floor = ft_split(data->textures_path[6], ',');
+	c = (ft_atoi(ceil[0]) << 24)
+		| (ft_atoi(ceil[1]) << 16) | (ft_atoi(ceil[2]) << 8) | 0xFF;
+	f = (ft_atoi(floor[0]) << 24)
+		| (ft_atoi(floor[1]) << 16) | (ft_atoi(floor[2]) << 8) | 0xFF;
 	data->ceiling_color = c;
 	data->floor_color = f;
+	ft_charpp_free(floor);
+	ft_charpp_free(ceil);
 }
 
 int	main(int argc, char **argv)

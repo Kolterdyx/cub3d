@@ -6,7 +6,7 @@
 /*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/02/01 20:32:58 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:46:55 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -558,5 +558,10 @@ void		ft_parser_error(char *str);
 int			get_player_dir(char c, int *flag);
 
 t_list				*ft_lsti(t_list *lst, int index);
+
+void update_sprites(t_data *data);
+
+void	load_textures(t_data *data);
+
 
 #endif //CUB3D_H

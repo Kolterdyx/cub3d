@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:08:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2022/12/12 06:45:36 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:29:28 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,17 @@ uint32_t	mlx_get_pixel(mlx_image_t *image, int x, int y)
 mlx_image_t	*scale_image(mlx_t *mlx, mlx_image_t *img, t_vec scale)
 {
 	uint32_t	x;
-	uint32_t	y;
+	int			y;
 	uint32_t	color;
 	mlx_image_t	*new;
 
-	y = 0;
 	new = mlx_new_image(mlx, scale.x * img->width, scale.y * img->height);
+	y = (new->height - HEIGHT) / 2;
+	y = fmax(y, 0);
+	printf("y = %u\n", y);
 	if (!new)
 		return (NULL);
-	while (y < new->height)
+	while (y < (int)new->height - (new->height - HEIGHT) / 2)
 	{
 		x = 0;
 		while (x < new->width)
@@ -87,13 +89,13 @@ void	draw_texture_area_scaled(mlx_t *mlx, mlx_image_t *img,
 	int			x;
 	int			y;
 
-	y = 0;
 	temp = cropped_texture(mlx, texture, area[0], area[1]);
 	temp2 = scale_image(mlx, temp, area[2]);
+	y = ((int)temp2->height - HEIGHT) / 2;
 	mlx_delete_image(mlx, temp);
 	if (!temp2)
 		return ;
-	while (y < (int)temp2->height)
+	while (y < (int)temp2->height - ((int)temp2->height - HEIGHT) / 2)
 	{
 		x = 0;
 		while (x < (int)temp2->width)
