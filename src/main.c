@@ -52,7 +52,6 @@ void	ft_exit(t_data *data, int code)
 	ft_lstclear(&data->wall_edges, free);
 	ft_lstclear(&data->rays, free);
 	ft_lstclear(&data->doors, free);
-	ft_lstclear(&data->sprites, free);
 	free(data);
 	exit(code);
 }
@@ -64,8 +63,8 @@ void	load_colors(t_data *data)
 	uint32_t	c;
 	uint32_t	f;
 
-	ceil = ft_split(data->textures_path[7], ',');
-	floor = ft_split(data->textures_path[6], ',');
+	ceil = ft_split(data->textures_path[6], ',');
+	floor = ft_split(data->textures_path[5], ',');
 	c = (ft_atoi(ceil[0]) << 24)
 		| (ft_atoi(ceil[1]) << 16) | (ft_atoi(ceil[2]) << 8) | 0xFF;
 	f = (ft_atoi(floor[0]) << 24)

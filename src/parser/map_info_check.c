@@ -17,8 +17,8 @@ static int	fill_id(t_parser *parser_info)
 	int	i;
 
 	i = 0;
-	parser_info->name = ft_calloc(sizeof(char *), 9);
-	parser_info->value = ft_calloc(sizeof(char *), 9);
+	parser_info->name = ft_calloc(sizeof(char *), 8);
+	parser_info->value = ft_calloc(sizeof(char *), 8);
 	if (!parser_info->name || !parser_info->value)
 		return (1);
 	parser_info->name[0] = ft_substr("NO", 0, 2);
@@ -26,9 +26,8 @@ static int	fill_id(t_parser *parser_info)
 	parser_info->name[2] = ft_substr("EA", 0, 2);
 	parser_info->name[3] = ft_substr("WE", 0, 2);
 	parser_info->name[4] = ft_substr("DO", 0, 2);
-	parser_info->name[5] = ft_substr("SP", 0, 2);
-	parser_info->name[6] = ft_substr("F", 0, 1);
-	parser_info->name[7] = ft_substr("C", 0, 1);
+	parser_info->name[5] = ft_substr("F", 0, 1);
+	parser_info->name[6] = ft_substr("C", 0, 1);
 	parser_info->value[0] = NULL;
 	parser_info->value[1] = NULL;
 	parser_info->value[2] = NULL;
@@ -36,10 +35,9 @@ static int	fill_id(t_parser *parser_info)
 	parser_info->value[4] = NULL;
 	parser_info->value[5] = NULL;
 	parser_info->value[6] = NULL;
-	parser_info->value[7] = NULL;
 	while (parser_info->name[i])
 		i++;
-	if (i != 8)
+	if (i != 7)
 		return (1);
 	return (0);
 }
@@ -194,8 +192,8 @@ int	first_part_check(char **file, int *j, t_data *info)
 		{
 			check = info_check(file[i], &parser_info);
 			if (check == 1)
-				return (ft_charpp_nfree(parser_info.name, 8),
-					ft_charpp_nfree(parser_info.value, 8), 1);
+				return (ft_charpp_nfree(parser_info.name, 7),
+					ft_charpp_nfree(parser_info.value, 7), 1);
 			else if (check == 2)
 				break ;
 			i++;

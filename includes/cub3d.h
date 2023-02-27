@@ -54,7 +54,7 @@ typedef struct s_vector
  * @param start Start point.
  * @param end End point.
  * @param tex_index Texture index for the texture to be rendered on this edge.
- * 0 = North, 1 = East, 2 = South, 3 = West, 4 = Door, 5 = Sprite
+ * 0 = North, 1 = East, 2 = South, 3 = West, 4 = Door,
  */
 typedef struct s_edge
 {
@@ -121,7 +121,6 @@ typedef struct t_data
 	int				player_dir;
 	char			**textures_path;
 	t_list			*map;
-	t_list			*sprites;
 }					t_data;
 
 void				key_hook(mlx_key_data_t keydata, void *param);
@@ -414,7 +413,7 @@ void				add_wall(t_data *data, t_vec pos, int direction);
  * @brief Load a map from an integer array.
  * @param data
  * @param arr Integer array containing the map. (0 = empty, 1 = wall,
- * 2 = player, 3 = sprite, 4 = door (should only have two walls
+ * 2 = player, 4 = door (should only have two walls
  * around it on opposite sides))
  * @param shape
  */
@@ -472,12 +471,6 @@ int					arr_index(t_vec pos, const int *arr, int width,
  */
 void				init_door(t_data *data, t_vec pos, t_vec shape,
 						const int *arr);
-
-/**
- * Initialize sprite
- * @param data
- */
-void				init_sprite(t_data *data, t_vec pos);
 
 /**
  * Mouse hook
@@ -559,12 +552,7 @@ int					get_player_dir(char c, int *flag);
 
 t_list				*ft_lsti(t_list *lst, int index);
 
-void				update_sprites(t_data *data);
-
 void				load_textures(t_data *data);
-
-void				sprite_cast(t_data *data, t_edge *ray_edge, t_vec *inter,
-						int ray_index);
 
 void				door_cast(t_data *data, t_edge *ray_edge, t_vec *inter,
 						int *tex_index);

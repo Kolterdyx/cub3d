@@ -67,13 +67,6 @@ static void	line_check(char **file, int *i, int *flag, t_data *info)
 	{
 		if (condition(file[*i][x]))
 			ft_parser_error("unable character found in map\n");
-		else if (file[*i][x] == '0' || file[*i][x] == 'C')
-		{
-			if (file[*i][x] == '0' && square_check(file, *i, x))
-				ft_parser_error("map is not surrounded by walls\n");
-			else if (file[*i][x] == 'C' && square_check(file, *i, x))
-				ft_parser_error("bad position for sprite\n");
-		}
 		else if (file[*i][x] == 'N' || file[*i][x] == 'S' || file[*i][x] == 'E'
 				|| file[*i][x] == 'W')
 		{

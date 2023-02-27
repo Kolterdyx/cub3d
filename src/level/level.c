@@ -81,8 +81,6 @@ void	init_map(t_data *data, const int *arr, t_vec shape)
 				p_exists = 1;
 				init_player(data, (t_vec){x, y});
 			}
-			if (arr[(int)(y * shape.x + x)] == 3)
-				init_sprite(data, (t_vec){x, y});
 			if (arr[(int)(y * shape.x + x)] == 4)
 				init_door(data, (t_vec){x, y}, shape, arr);
 		}

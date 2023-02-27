@@ -49,8 +49,6 @@ int	map_filler(char **map, int **map_arr, t_vec *dimensions)
 			else if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 					|| map[i][j] == 'W')
 				map_arr[0][x++] = 2;
-			else if (map[i][j] == 'C')
-				map_arr[0][x++] = 3;
 			else if (map[i][j] == 'D')
 				map_arr[0][x++] = 4;
 			else if (map[i][j] == ' ')
