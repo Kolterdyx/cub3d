@@ -29,7 +29,8 @@ void	render_wall(t_data *data, t_edge rect, t_vec hit_pos)
 
 	ratio = data->texture_size.x / TILE_SIZE;
 	wall_height = 80 * pow(32. / data->texture_size.x, 2) * ratio * rect.end.y;
-	draw_texture_area_scaled(data->mlx, data->img, data->textures[rect.tex_index],
+	draw_texture_area_scaled(data->mlx, data->img,
+		data->textures[rect.tex_index],
 		(t_vec[4]){(t_vec){hit_pos.x * ratio, 0}, (t_vec){fmax(rect.end.x
 			* ratio, 1.), fmax(data->texture_size.y, 1.)},
 		(t_vec){1, wall_height},
@@ -47,7 +48,8 @@ void	render_ray(t_data *data, int tex_index, t_vec inter, int ray_index)
 	if (tex_index == -1)
 		return ;
 	ray_angle = ((ray_index * FOV / RAYS) * M_PI / 180);
-	dist = vec_dist(data->player_pos, inter) * cos(ray_angle - (FOV * M_PI / 180) / 2);
+	dist = vec_dist(data->player_pos, inter) * cos(ray_angle
+			- (FOV * M_PI / 180) / 2);
 	size.y = (1. / fmax(0.01f, dist / 4));
 	size.x = WIDTH / RAYS;
 	if (size.x > WIDTH)

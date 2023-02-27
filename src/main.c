@@ -58,11 +58,6 @@ void	ft_exit(t_data *data, int code)
 	exit(code);
 }
 
-void	ft(void)
-{
-	system("leaks -q cub3D");
-}
-
 void	load_colors(t_data *data)
 {
 	char		**ceil;
@@ -88,7 +83,6 @@ int	main(int argc, char **argv)
 	int		*map_arr;
 	t_vec	dimensions;
 
-	atexit(ft);
 	(void)argc;
 	data = init_data();
 	parser(data, argv, &map_arr, &dimensions);
