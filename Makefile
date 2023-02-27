@@ -20,6 +20,7 @@ SRC_FILES = main.c \
 			render/minimap.c \
 			render/lines.c \
 			render/rays.c \
+			render/casts.c \
 			render/sprites.c \
 			render/texture_utils.c \
 			level/level.c \

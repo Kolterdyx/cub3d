@@ -563,4 +563,13 @@ void				update_sprites(t_data *data);
 
 void				load_textures(t_data *data);
 
+void				sprite_cast(t_data *data, t_edge *ray_edge, t_vec *inter,
+						int ray_index);
+
+void				door_cast(t_data *data, t_edge *ray_edge, t_vec *inter,
+						int *tex_index);
+
+void				wall_cast(t_data *data, t_edge *ray_edge, t_vec *inter,
+						int *tex_index);
+
 #endif //CUB3D_H

@@ -51,7 +51,7 @@ void	draw_circle(mlx_image_t *img, t_vec pos, double radius, uint32_t color)
 	{
 		p = vec_scl(vec_from_rad(i), radius);
 		put_pixel(img, pos.x + p.x, pos.y + p.y, color);
-		i += 0.01;
+		i += 0.01f;
 	}
 }
 
