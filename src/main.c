@@ -6,7 +6,7 @@
 /*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/02/27 20:20:40 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/02/28 20:10:11 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,12 @@ void	ft_exit(t_data *data, int code)
 	mlx_delete_texture(data->textures[2]);
 	mlx_delete_texture(data->textures[3]);
 	mlx_delete_texture(data->textures[4]);
+	ft_charpp_free(data->textures_path);
 	free(data->textures);
 	ft_lstclear(&data->wall_edges, free);
 	ft_lstclear(&data->rays, free);
 	ft_lstclear(&data->doors, free);
+	ft_lstclear(&data->map, free);
 	free(data);
 	exit(code);
 }
@@ -82,6 +84,7 @@ int	main(int argc, char **argv)
 	t_vec	dimensions;
 
 	(void)argc;
+	atexit(ft_leaks);
 	data = init_data();
 	parser(data, argv, &map_arr, &dimensions);
 	load_colors(data);
@@ -92,6 +95,5 @@ int	main(int argc, char **argv)
 	mlx_cursor_hook(data->mlx, cursor_hook, data);
 	mlx_mouse_hook(data->mlx, mouse_hook, data);
 	mlx_loop(data->mlx);
-	ft_charpp_free(data->textures_path);
 	ft_exit(data, 0);
 }

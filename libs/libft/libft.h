@@ -6,7 +6,7 @@
 /*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 23:33:25 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/02/01 19:29:47 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:33:36 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ int					printf_putnbr(int num);
 /* CUSTOM */
 
 char				**ft_arradd_back(char **arr, char *value);
+void				ft_leaks(void);
 
 #endif

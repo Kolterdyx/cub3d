@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_charpp_nfree.c                                  :+:      :+:    :+:   */
+/*   ft_leaks.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 20:56:21 by apena-ba          #+#    #+#             */
-/*   Updated: 2023/02/28 19:27:27 by apena-ba         ###   ########.fr       */
+/*   Created: 2023/02/28 19:29:35 by apena-ba          #+#    #+#             */
+/*   Updated: 2023/02/28 19:34:52 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-void	*ft_charpp_nfree(char **to_free, size_t n)
+void	ft_leaks(void)
 {
-	size_t	pos;
-
-	pos = 0;
-	if (to_free == NULL)
-		return (NULL);
-	while (pos < n)
-	{
-		free(to_free[pos]);
-		pos++;
-	}
-	free(to_free);
-	return (NULL);
+	system("leaks -q cub3D");
 }

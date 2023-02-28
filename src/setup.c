@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:55:23 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/01/20 13:43:14 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/02/28 20:07:46 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,12 @@ void	init_player(t_data *data, t_vec pos)
 
 void	load_textures(t_data *data)
 {
-	data->textures = ft_calloc(6, sizeof(mlx_texture_t *));
+	data->textures = ft_calloc(5, sizeof(mlx_texture_t *));
 	data->textures[0] = mlx_load_png(data->textures_path[0]);
 	data->textures[1] = mlx_load_png(data->textures_path[1]);
 	data->textures[2] = mlx_load_png(data->textures_path[2]);
 	data->textures[3] = mlx_load_png(data->textures_path[3]);
 	data->textures[4] = mlx_load_png(data->textures_path[4]);
-	data->textures[5] = mlx_load_png(data->textures_path[5]);
 	data->texture_size.x = data->textures[0]->width;
 	data->texture_size.y = data->textures[0]->height;
 }

@@ -1,15 +1,14 @@
-NO ./assets/test/north.png
-SO ./assets/test/south.png
 WE ./assets/test/west.png
+NO ./assets/test/north.png
+F 50,25,25
+SO ./assets/test/south.png
 EA ./assets/test/east.png
 DO ./assets/test/door.png
-SP ./assets/test/sprite2.png
 
-F 50,25,25
 C 25,50,25
 
         1111111111111111111111111
-        1000000000110000000000001
+        100000000011000000000000
         1011000001110000000000001
         1001000000D00000000000001
 111111111011000001110000000000001

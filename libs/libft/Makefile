@@ -44,7 +44,8 @@ SRCS =  ft_atoi.c		\
 		ft_isdigit_str.c \
 		get_next_line_bonus.c \
 		get_next_line_utils_bonus.c \
-		ft_arradd_back.c
+		ft_arradd_back.c \
+		ft_leaks.c
 
 SRCSB =	ft_lstnew.c			\
 		ft_lstadd_front.c	\

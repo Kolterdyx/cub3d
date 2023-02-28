@@ -6,7 +6,7 @@
 /*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:18:32 by apena-ba          #+#    #+#             */
-/*   Updated: 2023/02/27 20:13:10 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:35:54 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,12 @@ static int	get_index_tocomp(char *line, char *value, t_parser *parser_info)
 	if (ft_strlen(line) == 2)
 	{
 		i = 0;
-		max = 6;
+		max = 5;
 	}
 	else if (ft_strlen(line) == 1)
 	{
-		i = 6;
-		max = 8;
+		i = 5;
+		max = 7;
 	}
 	else
 		return (-1);
@@ -142,7 +142,7 @@ static int	check_final_data(t_parser *parser_info)
 	int	i;
 
 	i = 0;
-	while (i < 8)
+	while (i < 7)
 	{
 		if (parser_info->value[i] == NULL)
 			return (0);
@@ -163,9 +163,9 @@ static int	info_check(char *line, t_parser *parser_info)
 	ft_charpp_free(splited);
 	if (index == -1)
 		return (1);
-	if (index < 6 && line_check(line, parser_info->name[index]))
+	if (index < 5 && line_check(line, parser_info->name[index]))
 		return (1);
-	else if (index > 5 && color_check(line, parser_info->name[index]))
+	else if (index > 4 && color_check(line, parser_info->name[index]))
 		return (1);
 	if (check_final_data(parser_info))
 		return (2);
@@ -191,9 +191,10 @@ int	first_part_check(char **file, int *j, t_data *info)
 		else
 		{
 			check = info_check(file[i], &parser_info);
-			if (check == 1)
+			if (check == 1){
 				return (ft_charpp_nfree(parser_info.name, 7),
 					ft_charpp_nfree(parser_info.value, 7), 1);
+			}
 			else if (check == 2)
 				break ;
 			i++;
