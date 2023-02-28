@@ -6,7 +6,7 @@
 /*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 20:14:58 by apena-ba          #+#    #+#             */
-/*   Updated: 2023/02/27 20:10:44 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/02/28 21:36:41 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static void	line_check(char **file, int *i, int *flag, t_data *info)
 	{
 		if (condition(file[*i][x]))
 			ft_parser_error("unable character found in map\n");
+		else if (file[*i][x] == '0' && square_check(file, *i, x))
+			ft_parser_error("map is not surrounded by walls\n");
 		else if (file[*i][x] == 'N' || file[*i][x] == 'S' || file[*i][x] == 'E'
 				|| file[*i][x] == 'W')
 		{
@@ -155,14 +157,15 @@ static char	**create_map(char **file)
 		if (!ret[i])
 			return (ft_charpp_free(ret), NULL);
 		ft_memcpy(ret[i], file[i], ft_strlen(file[i]));
-		if (max_len >= ft_strlen(file[i])
-			&& ft_strlen(file[i]) > 0 && file[i + 1])
+		if (max_len >= ft_strlen(file[i]) && ft_strlen(file[i]) > 0
+			&& file[i][ft_strlen(file[i]) - 1] == '\n')
 			set_char(ret[i], ft_strlen(file[i]) - 1, max_len, ' ');
-		else if (max_len >= ft_strlen(file[i]) && ft_strlen(file[i]) > 0
-			&& !file[i + 1])
+		else if (max_len >= ft_strlen(file[i]) && ft_strlen(file[i]) > 0)
 			set_char(ret[i], ft_strlen(file[i]), max_len, ' ');
 		i++;
 	}
+	for (int y = 0; ret[y]; y++)
+		printf("|%s|\n", ret[y]);
 	return (ret);
 }
 
