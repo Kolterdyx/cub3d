@@ -26,6 +26,8 @@ SRC_FILES = main.c \
 			level/level_elements.c \
 			level/collisions.c \
 			parser/parser_utils.c \
+			parser/parser_utils2.c \
+			parser/parser_utils3.c \
 			parser/map_info_check.c \
 			parser/map_content_check.c \
 			parser/map_filler.c \
