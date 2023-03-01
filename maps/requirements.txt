@@ -1,0 +1,3 @@
+numpy==1.24.2
+opensimplex==0.4.4
+pywfc==0.0.0
