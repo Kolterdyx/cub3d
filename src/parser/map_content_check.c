@@ -74,14 +74,12 @@ static void	line_check(char **file, int *i, int *flag, t_data *info)
 
 static int	content_check(char **file, int *i, t_data *info)
 {
-	int	x;
 	int	flag;
 
 	flag = 0;
 	*i = 0;
 	while (file[*i])
 	{
-		x = 0;
 		line_check(file, i, &flag, info);
 		if (ft_isspace_str(file[*i]) == 1)
 			break ;

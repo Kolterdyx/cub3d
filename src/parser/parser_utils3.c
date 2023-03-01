@@ -99,7 +99,6 @@ char	**create_map(char **file)
 {
 	char	**ret;
 	int		i;
-	int		j;
 	size_t	max_len;
 
 	max_len = 0;
@@ -110,7 +109,6 @@ char	**create_map(char **file)
 	i = -1;
 	while (file[++i])
 	{
-		j = 0;
 		ret[i] = ft_calloc(sizeof(char), max_len + 1);
 		ft_memcpy(ret[i], file[i], ft_strlen(file[i]));
 		if (max_len >= ft_strlen(file[i]) && ft_strlen(file[i]) > 0
