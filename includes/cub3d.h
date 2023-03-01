@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/02/28 22:11:08 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:42:21 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -528,13 +528,15 @@ uint32_t			rgb_to_int(int r, int g, int b);
  * @param dimensions Pointer to map dimensions.
  * @return Boolean, whether the map was successfully parsed or not.
  */
-int					parser(t_data *info, char **argv, int **map_arr, t_vec *dimensions);
+int					parser(t_data *info, char **argv, int **map_arr,
+						t_vec *dimensions);
 
 int					first_part_check(char **file, int *j, t_data *info);
 
 int					fill_id(t_parser *parser_info);
 
-int					get_index_tocomp(char *line, char *value, t_parser *parser_info);
+int					get_index_tocomp(char *line, char *value,
+						t_parser *parser_info);
 
 int					color_check(char *line, char *to_comp);
 
