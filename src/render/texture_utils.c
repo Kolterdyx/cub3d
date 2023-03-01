@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:08:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/02/27 19:29:28 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:25:25 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ mlx_image_t	*scale_image(mlx_t *mlx, mlx_image_t *img, t_vec scale)
 	mlx_image_t	*new;
 
 	new = mlx_new_image(mlx, scale.x * img->width, scale.y * img->height);
-	y = (new->height - HEIGHT) / 2;
-	y = fmax(y, 0);
+	y = fmax((new->height - HEIGHT) / 2, 0);
 	if (!new)
 		return (NULL);
 	while (y < (int)new->height - (new->height - HEIGHT) / 2)
@@ -66,11 +65,9 @@ mlx_image_t	*scale_image(mlx_t *mlx, mlx_image_t *img, t_vec scale)
 		while (x < new->width)
 		{
 			color = mlx_get_pixel(img,
-					floor(map_range(x,
-							(t_vec){0, new->width},
+					floor(map_range(x, (t_vec){0, new->width},
 							(t_vec){0, img->width})),
-					floor(map_range(y,
-							(t_vec){0, new->height},
+					floor(map_range(y, (t_vec){0, new->height},
 							(t_vec){0, img->height})));
 			put_pixel(new, x, y, color);
 			x++;
