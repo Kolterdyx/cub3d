@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/03/01 18:38:16 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/03/01 20:14:47 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	update(t_data *data)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 		vel = calc_velocity(data, M_PI_2);
 	collisions(data);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT_SHIFT))
+		vel = vec_scl(vel, 3);
 	data->player_pos = add_vec(data->player_pos, vel);
 }
 

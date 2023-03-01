@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:55 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/03/01 18:42:21 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/03/01 20:16:20 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 // These values here are a proportion of the minimap scale
 # define PLAYER_SPEED 0.075
 # define PLAYER_ROTATION_SPEED 0.001
-# define PLAYER_HITBOX_RADIUS 0.25
+# define PLAYER_HITBOX_RADIUS 0.375
 # define PLAYER_INTERACTION_RADIUS 1.25
 
 /**
