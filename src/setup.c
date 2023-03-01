@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:55:23 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/02/28 20:07:46 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:32:34 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,24 @@ void	init_player(t_data *data, t_vec pos)
 	}
 }
 
+t_vec	get_texture_size(t_data *data)
+{
+	t_vec	size;
+	int		i;
+
+	size.x = data->textures[0]->width;
+	size.y = data->textures[0]->height;
+	while (i < 5)
+	{
+		if (data->textures[i]->width < size.x)
+			size.x = data->textures[i]->width;
+		if (data->textures[i]->height < size.y)
+			size.y = data->textures[i]->height;
+		i++;
+	}
+	return (size);
+}
+
 void	load_textures(t_data *data)
 {
 	data->textures = ft_calloc(5, sizeof(mlx_texture_t *));
@@ -39,8 +57,7 @@ void	load_textures(t_data *data)
 	data->textures[2] = mlx_load_png(data->textures_path[2]);
 	data->textures[3] = mlx_load_png(data->textures_path[3]);
 	data->textures[4] = mlx_load_png(data->textures_path[4]);
-	data->texture_size.x = data->textures[0]->width;
-	data->texture_size.y = data->textures[0]->height;
+	data->texture_size = get_texture_size(data);
 }
 
 t_data	*init_data(void)
