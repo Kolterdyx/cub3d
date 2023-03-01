@@ -54,8 +54,8 @@ void	load_textures(t_data *data)
 {
 	data->textures = ft_calloc(5, sizeof(mlx_texture_t *));
 	data->textures[0] = mlx_load_png(data->textures_path[0]);
-	data->textures[1] = mlx_load_png(data->textures_path[1]);
-	data->textures[2] = mlx_load_png(data->textures_path[2]);
+	data->textures[2] = mlx_load_png(data->textures_path[1]);
+	data->textures[1] = mlx_load_png(data->textures_path[2]);
 	data->textures[3] = mlx_load_png(data->textures_path[3]);
 	data->textures[4] = mlx_load_png(data->textures_path[4]);
 	data->texture_size = get_texture_size(data);

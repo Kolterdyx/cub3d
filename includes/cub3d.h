@@ -38,6 +38,7 @@
 # define PLAYER_ROTATION_SPEED 0.001
 # define PLAYER_HITBOX_RADIUS 0.375
 # define PLAYER_INTERACTION_RADIUS 1.25
+# define PLAYER_SPRINT_RATIO 2
 
 /**
  * @brief 2D vector

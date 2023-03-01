@@ -15,20 +15,27 @@
 void	update(t_data *data)
 {
 	t_vec	vel;
+	double	len1;
+	double	len2;
 
 	vel = (t_vec){0, 0};
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
-		vel = calc_velocity(data, 0);
+		vel = add_vec(vel, calc_velocity(data, 0));
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
-		vel = calc_velocity(data, M_PI);
+		vel = add_vec(vel, calc_velocity(data, M_PI));
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
-		vel = calc_velocity(data, -M_PI_2);
+		vel = add_vec(vel, calc_velocity(data, -M_PI_2));
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
-		vel = calc_velocity(data, M_PI_2);
-	collisions(data);
+		vel = add_vec(vel, calc_velocity(data, M_PI_2));
+	if (vel.x == 0 && vel.y == 0)
+		return ;
+	len1 = vec_len(calc_velocity(data, 0));
+	len2 = vec_len(vel);
+	vel = vec_scl(vec_scl(vel, 1 / len2), len1);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT_SHIFT))
-		vel = vec_scl(vel, 3);
+		vel = vec_scl(vel, PLAYER_SPRINT_RATIO);
 	data->player_pos = add_vec(data->player_pos, vel);
+	collisions(data);
 }
 
 void	loop(void *param)
