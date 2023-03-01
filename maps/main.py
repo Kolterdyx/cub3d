@@ -26,7 +26,6 @@ def match_wall(x, y, landscape):
     """
     if x == 0 or y == 0 or y >= len(landscape) - 2 or x >= len(landscape[0]) - 2:
         return False
-    print(x, y, len(landscape[0]), len(landscape))
     if (landscape[x - 1][y] == "1" and
         landscape[x + 1][y] == "1" and
         landscape[x][y - 1] == "0" and
@@ -49,7 +48,6 @@ def perlin_noise(scale=100, threshold_low: float = 0, threshold_high: float = 0.
         row = []
         for x in range(args.width):
             n = noise.noise2(x / scale, y / scale)
-            print(n)
             if threshold_low < n < threshold_high:
                 row.append("wall")
             else:
