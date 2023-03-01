@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/02/28 20:10:11 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:38:16 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	loop(void *param)
 
 void	ft_exit(t_data *data, int code)
 {
-	mlx_terminate(data->mlx);
 	mlx_delete_image(data->mlx, data->img);
 	mlx_delete_image(data->mlx, data->minimap);
 	mlx_delete_texture(data->textures[0]);
@@ -48,6 +47,7 @@ void	ft_exit(t_data *data, int code)
 	mlx_delete_texture(data->textures[2]);
 	mlx_delete_texture(data->textures[3]);
 	mlx_delete_texture(data->textures[4]);
+	mlx_terminate(data->mlx);
 	ft_charpp_free(data->textures_path);
 	free(data->textures);
 	ft_lstclear(&data->wall_edges, free);
@@ -84,7 +84,6 @@ int	main(int argc, char **argv)
 	t_vec	dimensions;
 
 	(void)argc;
-	atexit(ft_leaks);
 	data = init_data();
 	parser(data, argv, &map_arr, &dimensions);
 	load_colors(data);

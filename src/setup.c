@@ -6,7 +6,7 @@
 /*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:55:23 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/03/01 18:32:34 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:32:46 by cigarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_vec	get_texture_size(t_data *data)
 
 	size.x = data->textures[0]->width;
 	size.y = data->textures[0]->height;
+	i = 1;
 	while (i < 5)
 	{
 		if (data->textures[i]->width < size.x)

@@ -1,5 +1,5 @@
-WE ./assets/example2/west.png
-NO ./assets/example/north.png
+WE ./assets/test/west.png
+NO ./assets/test/north.png
 F 50,25,25
 SO ./assets/test/south.png
 EA ./assets/test/east.png
