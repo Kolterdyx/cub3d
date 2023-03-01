@@ -1,7 +1,6 @@
 import argparse
 import random
 
-import colorama
 from wfc import *
 import opensimplex as osn
 
