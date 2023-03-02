@@ -19,6 +19,7 @@ void	update(t_data *data)
 	double	len2;
 
 	vel = (t_vec){0, 0};
+	collisions(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 		vel = add_vec(vel, calc_velocity(data, 0));
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
