@@ -16,17 +16,17 @@ mlx_image_t	*cropped_texture(mlx_t *mlx, mlx_texture_t *texture,
 								t_vec origin, t_vec size)
 {
 	mlx_image_t	*cropped;
-	uint32_t	xy[3];
-	uint32_t	wh[3];
+	uint32_t	xy[2];
+	uint32_t	wh[2];
 
 	xy[0] = (uint32_t)origin.x;
 	xy[1] = (uint32_t)origin.y;
 	wh[0] = (uint32_t)size.x;
-	if (wh[0] > texture->width)
-		wh[0] = texture->width;
+	if (wh[0] + xy[0] > texture->width)
+		wh[0] = texture->width - xy[0];
 	wh[1] = (uint32_t)size.y;
-	if (wh[1] > texture->height)
-		wh[1] = texture->height;
+	if (wh[1] + xy[1] > texture->height)
+		wh[1] = texture->height - xy[1];
 	cropped = mlx_texture_area_to_image(mlx, texture, xy, wh);
 	return (cropped);
 }
