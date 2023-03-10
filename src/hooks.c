@@ -12,6 +12,26 @@
 
 #include "cub3d.h"
 
+t_vec	movement(t_data *data)
+{
+	t_vec	vel;
+
+	vel = (t_vec){0, 0};
+	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
+		vel = add_vec(vel, calc_velocity(data, 0));
+	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
+		vel = add_vec(vel, calc_velocity(data, M_PI));
+	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
+		vel = add_vec(vel, calc_velocity(data, -M_PI_2));
+	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
+		vel = add_vec(vel, calc_velocity(data, M_PI_2));
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+		data->player_angle -= PLAYER_ROTATION_SPEED;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+		data->player_angle += PLAYER_ROTATION_SPEED;
+	return (vel);
+}
+
 void	open_door(t_data *data)
 {
 	t_door	*door;
@@ -47,7 +67,7 @@ void	cursor_hook(double x, double y, void *vdata)
 	data = vdata;
 	if (!is_vector_empty(data->last_mousepos))
 		data->player_angle += (x - data->last_mousepos.x)
-			* PLAYER_ROTATION_SPEED;
+			* PLAYER_ROTATION_SPEED * MOUSE_SENSITIVITY;
 	data->last_mousepos = (t_vec){x, y};
 }
 

@@ -28,7 +28,8 @@ void	render_wall(t_data *data, t_edge rect, t_vec hit_pos)
 	double	wall_height;
 
 	ratio = data->texture_size.x / TILE_SIZE;
-	wall_height = (TILE_SIZE * 4) * pow(32. / data->texture_size.x, 2) * ratio * rect.end.y;
+	wall_height = (TILE_SIZE * 4) * pow(32. / data->texture_size.x, 2) * ratio
+		* rect.end.y;
 	draw_texture_area_scaled(data->mlx, data->img,
 		data->textures[rect.tex_index],
 		(t_vec[4]){(t_vec){hit_pos.x * ratio, 0}, (t_vec){fmax(rect.end.x

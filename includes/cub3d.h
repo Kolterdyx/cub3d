@@ -35,7 +35,8 @@
 
 // These values here are a proportion of the minimap scale
 # define PLAYER_SPEED 0.075
-# define PLAYER_ROTATION_SPEED 0.001
+# define MOUSE_SENSITIVITY 0.01
+# define PLAYER_ROTATION_SPEED 0.1
 # define PLAYER_HITBOX_RADIUS 0.375
 # define PLAYER_INTERACTION_RADIUS 1.25
 # define PLAYER_SPRINT_RATIO 2

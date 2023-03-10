@@ -12,23 +12,17 @@
 
 #include "cub3d.h"
 
+t_vec	movement(t_data *data);
+
 void	update(t_data *data)
 {
 	t_vec	vel;
 	double	len1;
 	double	len2;
 
-	vel = (t_vec){0, 0};
 	collisions(data);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
-		vel = add_vec(vel, calc_velocity(data, 0));
-	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
-		vel = add_vec(vel, calc_velocity(data, M_PI));
-	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
-		vel = add_vec(vel, calc_velocity(data, -M_PI_2));
-	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
-		vel = add_vec(vel, calc_velocity(data, M_PI_2));
-	if (vel.x == 0 && vel.y == 0)
+	vel = movement(data);
+	if (is_vector_empty(vel))
 		return ;
 	len1 = vec_len(calc_velocity(data, 0));
 	len2 = vec_len(vel);
