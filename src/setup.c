@@ -50,6 +50,29 @@ t_vec	get_texture_size(t_data *data)
 	return (size);
 }
 
+void	load_sprites(t_data *data)
+{
+	int				i;
+	uint32_t		sprite_width;
+	uint32_t		sprite_height;
+	mlx_image_t		*sprite;
+	mlx_texture_t	*atlas;
+
+	atlas = data->textures[5];
+	sprite_width = atlas->width / SPRITE_COUNT;
+	sprite_height = atlas->height;
+	i = 0;
+	while (i < SPRITE_COUNT)
+	{
+		sprite = mlx_texture_area_to_image(data->mlx, atlas, (uint32_t[2]){i * sprite_width, 0}, (uint32_t[2]){sprite_width, sprite_height});
+		if (i > 0)
+			sprite->enabled = 0;
+		mlx_image_to_window(data->mlx, sprite, (WIDTH - sprite_width) / 2, HEIGHT - sprite_height);
+		ft_lstadd_back(&data->sprite_lst, ft_lstnew(sprite));
+		i++;
+	}
+}
+
 void	load_textures(t_data *data)
 {
 	data->textures = ft_calloc(5, sizeof(mlx_texture_t *));
@@ -58,6 +81,9 @@ void	load_textures(t_data *data)
 	data->textures[1] = mlx_load_png(data->textures_path[2]);
 	data->textures[3] = mlx_load_png(data->textures_path[3]);
 	data->textures[4] = mlx_load_png(data->textures_path[4]);
+	//data->textures[5] = mlx_load_png(data->textures_path[5]);
+	data->textures[5] = mlx_load_png("assets/test/atlas.png");
+	load_sprites(data);
 	data->texture_size = get_texture_size(data);
 }
 
@@ -74,5 +100,9 @@ t_data	*init_data(void)
 	mlx_set_instance_depth(&data->minimap->instances[0], 1);
 	mlx_set_instance_depth(&data->img->instances[0], 0);
 	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_DISABLED);
+	data->animation_thread = ft_calloc(1, sizeof(pthread_t));
+	data->mutex = ft_calloc(1, sizeof(pthread_mutex_t));
+	pthread_mutex_init(data->mutex, NULL);
+	pthread_create(data->animation_thread, NULL, animation_thread, data);
 	return (data);
 }

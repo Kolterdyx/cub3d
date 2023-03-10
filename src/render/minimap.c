@@ -12,6 +12,8 @@
 
 #include "cub3d.h"
 
+void draw_sprite(t_data *data);
+
 void	draw_doors(t_data *data, t_vec offset)
 {
 	t_list	*doors;

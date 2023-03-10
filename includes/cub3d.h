@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <pthread.h>
 
 # define WIDTH 960.
 # define HEIGHT 540.
@@ -40,6 +41,10 @@
 # define PLAYER_HITBOX_RADIUS 0.375
 # define PLAYER_INTERACTION_RADIUS 1.25
 # define PLAYER_SPRINT_RATIO 2
+
+# define SPRITE_COUNT 5
+# define ANIMATION_EXIT 0xFFFFFFFF
+# define ANIMATION_SHOOT 0x00000001
 
 /**
  * @brief 2D vector
@@ -78,6 +83,12 @@ typedef struct s_door
 	int				open;
 }					t_door;
 
+typedef struct s_parser
+{
+	char	**name;
+	char	**value;
+}			t_parser;
+
 /**
  * @brief Main structure for holding global data.
  *
@@ -93,13 +104,6 @@ typedef struct s_door
  * it's easier that way. (0 = North, 1 = East, 2 = South, 3 = West, 4 = Door).
  *
  */
-
-typedef struct s_parser
-{
-	char	**name;
-	char	**value;
-}			t_parser;
-
 typedef struct t_data
 {
 	mlx_t			*mlx;
@@ -123,6 +127,12 @@ typedef struct t_data
 	int				player_dir;
 	char			**textures_path;
 	t_list			*map;
+
+	uint32_t		animation_flag;
+	pthread_mutex_t	*mutex;
+	t_list			*sprite_lst;
+	pthread_t		*animation_thread;
+
 }					t_data;
 
 void				key_hook(mlx_key_data_t keydata, void *param);
@@ -575,5 +585,8 @@ void				door_cast(t_data *data, t_edge *ray_edge, t_vec *inter,
 
 void				wall_cast(t_data *data, t_edge *ray_edge, t_vec *inter,
 						int *tex_index);
+
+void				set_animation_flag(t_data *data, uint32_t flag);
+void				*animation_thread(void *vdata);
 
 #endif //CUB3D_H

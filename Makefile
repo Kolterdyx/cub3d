@@ -22,6 +22,7 @@ SRC_FILES = main.c \
 			render/rays.c \
 			render/casts.c \
 			render/texture_utils.c \
+			render/animation.c \
 			level/level.c \
 			level/level_elements.c \
 			level/collisions.c \

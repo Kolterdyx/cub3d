@@ -58,6 +58,12 @@ void	ft_exit(t_data *data, int code)
 	ft_lstclear(&data->rays, free);
 	ft_lstclear(&data->doors, free);
 	ft_lstclear(&data->map, free);
+	set_animation_flag(data, ANIMATION_EXIT);
+	usleep(100000 * SPRITE_COUNT);
+	pthread_mutex_destroy(data->mutex);
+	free(data->mutex);
+	pthread_join(*data->animation_thread, NULL);
+	free(data->animation_thread);
 	free(data);
 	exit(code);
 }
