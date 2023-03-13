@@ -4,7 +4,7 @@ F 50,25,25
 SO ./assets/test/south.png
 EA ./assets/test/east.png
 DO ./assets/test/door.png
-SP ./assets/test/door.png
+SP ./assets/test/atlas.png
 
 C 25,50,25
 
