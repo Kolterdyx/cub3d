@@ -6,7 +6,7 @@
 /*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 21:51:48 by apena-ba          #+#    #+#             */
-/*   Updated: 2023/02/28 22:14:08 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:51:54 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ static void	fill_names(t_parser *parser_info)
 	parser_info->name[2] = ft_substr("EA", 0, 2);
 	parser_info->name[3] = ft_substr("WE", 0, 2);
 	parser_info->name[4] = ft_substr("DO", 0, 2);
-	parser_info->name[5] = ft_substr("F", 0, 1);
-	parser_info->name[6] = ft_substr("C", 0, 1);
+	parser_info->name[5] = ft_substr("SP", 0, 2);
+	parser_info->name[6] = ft_substr("F", 0, 1);
+	parser_info->name[7] = ft_substr("C", 0, 1);
 }
 
 int	fill_id(t_parser *parser_info)
@@ -28,17 +29,17 @@ int	fill_id(t_parser *parser_info)
 	int	i;
 
 	i = 0;
-	parser_info->name = ft_calloc(sizeof(char *), 8);
-	parser_info->value = ft_calloc(sizeof(char *), 8);
+	parser_info->name = ft_calloc(sizeof(char *), 9);
+	parser_info->value = ft_calloc(sizeof(char *), 9);
 	if (!parser_info->name || !parser_info->value)
 		return (1);
 	fill_names(parser_info);
-	while (i < 7)
+	while (i < 8)
 		parser_info->value[i++] = NULL;
 	i = 0;
 	while (parser_info->name[i])
 		i++;
-	if (i != 7)
+	if (i != 8)
 		return (1);
 	return (0);
 }
@@ -48,12 +49,12 @@ static int	set_values(int *i, int *max, char *line)
 	if (ft_strlen(line) == 2)
 	{
 		*i = 0;
-		*max = 5;
+		*max = 6;
 	}
 	else if (ft_strlen(line) == 1)
 	{
-		*i = 5;
-		*max = 7;
+		*i = 6;
+		*max = 8;
 	}
 	else
 		return (-1);

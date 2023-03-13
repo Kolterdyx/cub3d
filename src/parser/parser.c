@@ -6,7 +6,7 @@
 /*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:37:06 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/02/28 22:37:40 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:55:32 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	map_check(char ***map, t_data *info)
 	char	**copy;
 
 	copy = ft_charpp_cpy(*map);
-	if (ft_charpp_len(copy) < 9)
+	if (ft_charpp_len(copy) < 10)
 		return (ft_charpp_free(*map), ft_charpp_free(copy), 1);
 	i = 0;
 	if (first_part_check(copy, &i, info))

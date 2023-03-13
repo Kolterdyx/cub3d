@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/03/01 20:14:47 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:13:24 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	load_colors(t_data *data)
 	uint32_t	c;
 	uint32_t	f;
 
-	ceil = ft_split(data->textures_path[6], ',');
-	floor = ft_split(data->textures_path[5], ',');
+	ceil = ft_split(data->textures_path[7], ',');
+	floor = ft_split(data->textures_path[6], ',');
 	c = (ft_atoi(ceil[0]) << 24)
 		| (ft_atoi(ceil[1]) << 16) | (ft_atoi(ceil[2]) << 8) | 0xFF;
 	f = (ft_atoi(floor[0]) << 24)
@@ -96,6 +96,7 @@ int	main(int argc, char **argv)
 	(void)argc;
 	data = init_data();
 	parser(data, argv, &map_arr, &dimensions);
+	ft_printf("here\n");
 	load_colors(data);
 	load_textures(data);
 	init_map(data, map_arr, dimensions);

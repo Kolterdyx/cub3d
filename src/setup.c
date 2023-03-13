@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cigarcia <cigarcia@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:55:23 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/03/01 18:32:46 by cigarcia         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:14:07 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,7 @@ void	load_textures(t_data *data)
 	data->textures[1] = mlx_load_png(data->textures_path[2]);
 	data->textures[3] = mlx_load_png(data->textures_path[3]);
 	data->textures[4] = mlx_load_png(data->textures_path[4]);
-	//data->textures[5] = mlx_load_png(data->textures_path[5]);
-	data->textures[5] = mlx_load_png("assets/test/atlas.png");
+	data->textures[5] = mlx_load_png(data->textures_path[5]);
 	load_sprites(data);
 	data->texture_size = get_texture_size(data);
 }
