@@ -6,7 +6,7 @@
 /*   By: apena-ba <apena-ba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 04:32:33 by cigarcia          #+#    #+#             */
-/*   Updated: 2023/03/13 20:13:24 by apena-ba         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:49:04 by apena-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int	main(int argc, char **argv)
 	(void)argc;
 	data = init_data();
 	parser(data, argv, &map_arr, &dimensions);
-	ft_printf("here\n");
 	load_colors(data);
 	load_textures(data);
 	init_map(data, map_arr, dimensions);
