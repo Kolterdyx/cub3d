@@ -35,7 +35,7 @@ void	shoot_animation(t_data *data)
 	mlx_image_t	*frame;
 
 	frame_lst = data->sprite_lst;
-	while (frame_lst)
+	while (frame_lst && get_animation_flag(data) != ANIMATION_EXIT)
 	{
 		frame = frame_lst->content;
 		frame->enabled = 1;
@@ -45,6 +45,8 @@ void	shoot_animation(t_data *data)
 	}
 	frame = data->sprite_lst->content;
 	frame->enabled = 1;
+	if (get_animation_flag(data) == ANIMATION_SHOOT)
+		set_animation_flag(data, 0);
 }
 
 void	*animation_thread(void *vdata)
@@ -55,10 +57,7 @@ void	*animation_thread(void *vdata)
 	while (get_animation_flag(data) != ANIMATION_EXIT)
 	{
 		if (get_animation_flag(data) == ANIMATION_SHOOT)
-		{
 			shoot_animation(data);
-			set_animation_flag(data, 0);
-		}
 	}
 	return (NULL);
 }

@@ -81,8 +81,5 @@ void	mouse_hook(mouse_key_t key, action_t action, modifier_key_t mod,
 	if ((key == MLX_MOUSE_BUTTON_RIGHT && action == MLX_PRESS))
 		open_door(data);
 	if ((key == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS))
-	{
-		printf("SHOOT!\n");
 		set_animation_flag(data, ANIMATION_SHOOT);
-	}
 }

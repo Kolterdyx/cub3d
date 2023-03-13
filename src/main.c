@@ -59,7 +59,6 @@ void	ft_exit(t_data *data, int code)
 	ft_lstclear(&data->doors, free);
 	ft_lstclear(&data->map, free);
 	set_animation_flag(data, ANIMATION_EXIT);
-	usleep(SPRITE_TIME_OFFSET * SPRITE_COUNT);
 	free_sprites(data);
 	pthread_mutex_destroy(data->mutex);
 	free(data->mutex);
