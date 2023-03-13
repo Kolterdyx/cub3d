@@ -39,10 +39,12 @@ void	shoot_animation(t_data *data)
 	{
 		frame = frame_lst->content;
 		frame->enabled = 1;
-		usleep(100000);
+		usleep(SPRITE_TIME_OFFSET);
 		frame->enabled = 0;
 		frame_lst = frame_lst->next;
 	}
+	frame = data->sprite_lst->content;
+	frame->enabled = 1;
 }
 
 void	*animation_thread(void *vdata)
@@ -50,14 +52,35 @@ void	*animation_thread(void *vdata)
 	t_data	*data;
 
 	data = vdata;
-	while (get_animation_flag(data) & ANIMATION_EXIT)
+	while (get_animation_flag(data) != ANIMATION_EXIT)
 	{
-		if (get_animation_flag(data) & ANIMATION_SHOOT)
+		if (get_animation_flag(data) == ANIMATION_SHOOT)
 		{
-			printf("SHOOTING\n");
 			shoot_animation(data);
 			set_animation_flag(data, 0);
 		}
 	}
 	return (NULL);
+}
+
+void	free_sprites(t_data *data)
+{
+	t_list		*current_sprite;
+	t_list		*tmp;
+	mlx_image_t	*img;
+
+	current_sprite = data->sprite_lst;
+	while (current_sprite)
+	{
+		img = current_sprite->content;
+		mlx_delete_image(data->mlx, img);
+		current_sprite = current_sprite->next;
+	}
+	current_sprite = ft_lstlast(data->sprite_lst);
+	while (current_sprite)
+	{
+		tmp = current_sprite->prev;
+		free(current_sprite);
+		current_sprite = tmp;
+	}
 }

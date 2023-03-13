@@ -43,6 +43,7 @@
 # define PLAYER_SPRINT_RATIO 2
 
 # define SPRITE_COUNT 5
+# define SPRITE_TIME_OFFSET 100000
 # define ANIMATION_EXIT 0xFFFFFFFF
 # define ANIMATION_SHOOT 0x00000001
 
@@ -588,5 +589,7 @@ void				wall_cast(t_data *data, t_edge *ray_edge, t_vec *inter,
 
 void				set_animation_flag(t_data *data, uint32_t flag);
 void				*animation_thread(void *vdata);
+
+void				free_sprites(t_data *data);
 
 #endif //CUB3D_H
