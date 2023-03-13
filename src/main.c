@@ -51,7 +51,7 @@ void	ft_exit(t_data *data, int code)
 	mlx_delete_texture(data->textures[2]);
 	mlx_delete_texture(data->textures[3]);
 	mlx_delete_texture(data->textures[4]);
-	mlx_terminate(data->mlx);
+	mlx_delete_texture(data->textures[5]);
 	ft_charpp_free(data->textures_path);
 	free(data->textures);
 	ft_lstclear(&data->wall_edges, free);
@@ -59,11 +59,13 @@ void	ft_exit(t_data *data, int code)
 	ft_lstclear(&data->doors, free);
 	ft_lstclear(&data->map, free);
 	set_animation_flag(data, ANIMATION_EXIT);
-	usleep(100000 * SPRITE_COUNT);
+	usleep(SPRITE_TIME_OFFSET * SPRITE_COUNT);
+	free_sprites(data);
 	pthread_mutex_destroy(data->mutex);
 	free(data->mutex);
 	pthread_join(*data->animation_thread, NULL);
 	free(data->animation_thread);
+	mlx_terminate(data->mlx);
 	free(data);
 	exit(code);
 }

@@ -64,10 +64,13 @@ void	load_sprites(t_data *data)
 	i = 0;
 	while (i < SPRITE_COUNT)
 	{
-		sprite = mlx_texture_area_to_image(data->mlx, atlas, (uint32_t[2]){i * sprite_width, 0}, (uint32_t[2]){sprite_width, sprite_height});
+		sprite = mlx_texture_area_to_image(data->mlx, atlas,
+				(uint32_t[2]){i * sprite_width, 0},
+				(uint32_t[2]){sprite_width, sprite_height});
 		if (i > 0)
 			sprite->enabled = 0;
-		mlx_image_to_window(data->mlx, sprite, (WIDTH - sprite_width) / 2, HEIGHT - sprite_height);
+		mlx_image_to_window(data->mlx, sprite, (WIDTH - sprite_width) / 2,
+			HEIGHT - sprite_height);
 		ft_lstadd_back(&data->sprite_lst, ft_lstnew(sprite));
 		i++;
 	}
