@@ -1,6 +1,8 @@
 
 # Cub3D ([subject](en.subject.cub3d.pdf))
 
+By cigarcia and apena-ba at 42 Málaga
+
 ## Level storage
 
 After parsing the map file, we need a useful way to store all the level data.
