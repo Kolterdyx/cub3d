@@ -1,9 +1,10 @@
-WE ./assets/test/west.png
-NO ./assets/test/north.png
+WE ./assets/example/west.png
+NO ./assets/example/north.png
 F 50,25,25
-SO ./assets/test/south.png
-EA ./assets/test/east.png
-DO ./assets/test/door.png
+SO ./assets/example/south.png
+EA ./assets/example/east.png
+DO ./assets/example/door.png
+SP ./assets/example/weapon_atlas.png
 
 C 25,50,25
 
