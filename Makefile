@@ -49,7 +49,7 @@ LIB_FILES = $(LIB_PATH)/MLX42/libmlx42.a $(LIB_PATH)/libft/libft.a
 
 ifeq ($(shell uname), Linux)
 	# Must be installed: build-essential libx11-dev libglfw3-dev libglfw3 xorg-dev
-	LIBS = -Wl,--no-as-needed -ldl -lglfw -lm -lft $(foreach lib, $(LIB_FILES), -L$(dir $(lib)))
+	LIBS = -Wl,--no-as-needed -lpthread -ldl -lglfw -lm -lft $(foreach lib, $(LIB_FILES), -L$(dir $(lib)))
 else
 	LIBS = -framework OpenGL -framework AppKit -lglfw -lft -L "/Users/$(USER)/.brew/opt/glfw/lib/" -lm $(foreach lib, $(LIB_FILES), -L./$(dir $(lib)))
 endif
