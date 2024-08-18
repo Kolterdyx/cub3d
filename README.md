@@ -1,7 +1,7 @@
 
 # Cub3D
 
-By `cigarcia` and `apena-ba` at 42 Málaga
+By `cigarcia` (me) and [`apena-ba`](https://github.com/apena-ba) at 42 Málaga
 
 ## Screenshots
 
